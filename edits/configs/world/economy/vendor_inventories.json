@@ -1,0 +1,8 @@
+{
+  "edit_id": "vendor_inventories",
+  "inventory_housing_0010": {
+    "vendor_static_items": [
+      "ITEM_KIT_HOVEL", "ITEM_KIT_KEEP", "ITEM_KATANA", "ITEM_AXE_SLICER_GOLDRED", "ITEM_CHEST_STEEL", "ITEM_CHEST_SCALE"
+    ]
+  }
+}

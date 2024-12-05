@@ -1,0 +1,6 @@
+
+class CharacterEquipment {
+
+}
+
+export { CharacterEquipment }

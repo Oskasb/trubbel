@@ -1,0 +1,231 @@
+{
+  "edit_id": "resource_hierarchy",
+  "material_requirement_lists": {
+    "METAL": ["COPPER", "BRONZE", "IRON", "STEEL", "TITANIUM", "ADAMANTIUM"],
+    "PRECIOUS_METAL": ["LEAD", "COPPER", "SILVER", "GOLD", "PLATINUM", "MITHRIL"],
+    "LEATHER": ["FLIMSY", "PATCHED", "LIGHT", "ROUGH", "THICK", "STRONG"],
+    "CLOTH": ["WEAK", "STITCHED", "PLAIN", "DURABLE", "DYNAMIC", "VIBRANT"],
+    "CHEMICALS": ["MURKY", "IMPURE", "CLEAR", "PURE", "BRIGHT", "INFUSED"],
+    "COOLANT": ["DIRT", "WATER", "SAND", "OIL", "ADVANCED", "MYSTIC"]
+  },
+
+  "components": {
+    "BLADE": {
+      "COPPER": "ITEM_MATERIAL_BLADE_COPPER",
+      "BRONZE": "ITEM_MATERIAL_BLADE_BRONZE",
+      "IRON": "ITEM_MATERIAL_BLADE_IRON",
+      "STEEL": "ITEM_MATERIAL_BLADE_STEEL",
+      "TITANIUM": "ITEM_MATERIAL_BLADE_TITANIUM",
+      "ADAMANTIUM": "ITEM_MATERIAL_BLADE_ADAMANTIUM"
+    },
+    "PLATING": {
+      "COPPER": "ITEM_MATERIAL_PLATE_COPPER",
+      "BRONZE": "ITEM_MATERIAL_PLATE_BRONZE",
+      "IRON": "ITEM_MATERIAL_PLATE_IRON",
+      "STEEL": "ITEM_MATERIAL_PLATE_STEEL",
+      "TITANIUM": "ITEM_MATERIAL_PLATE_TITANIUM",
+      "ADAMANTIUM": "ITEM_MATERIAL_PLATE_ADAMANTIUM"
+    },
+    "RINGS": {
+      "COPPER": "ITEM_MATERIAL_RINGS_COPPER",
+      "BRONZE": "ITEM_MATERIAL_RINGS_BRONZE",
+      "IRON": "ITEM_MATERIAL_RINGS_IRON",
+      "STEEL": "ITEM_MATERIAL_RINGS_STEEL",
+      "TITANIUM": "ITEM_MATERIAL_RINGS_TITANIUM",
+      "ADAMANTIUM": "ITEM_MATERIAL_RINGS_ADAMANTIUM"
+    },
+    "SCALES": {
+      "COPPER": "ITEM_MATERIAL_SCALES_COPPER",
+      "BRONZE": "ITEM_MATERIAL_SCALES_BRONZE",
+      "IRON": "ITEM_MATERIAL_SCALES_IRON",
+      "STEEL": "ITEM_MATERIAL_SCALES_STEEL",
+      "TITANIUM": "ITEM_MATERIAL_SCALES_TITANIUM",
+      "ADAMANTIUM": "ITEM_MATERIAL_SCALES_ADAMANTIUM",
+      "FLIMSY": "ITEM_MATERIAL_SCALES_FLIMSY",
+      "PATCHED": "ITEM_MATERIAL_SCALES_PATCHED",
+      "LIGHT": "ITEM_MATERIAL_SCALES_LIGHT",
+      "ROUGH": "ITEM_MATERIAL_SCALES_ROUGH",
+      "THICK": "ITEM_MATERIAL_SCALES_THICK",
+      "STRONG": "ITEM_MATERIAL_SCALES_STRONG"
+    },
+    "PADDING": {
+      "FLIMSY": "ITEM_MATERIAL_PADDING_FLIMSY",
+      "PATCHED": "ITEM_MATERIAL_PADDING_PATCHED",
+      "LIGHT": "ITEM_MATERIAL_PADDING_LIGHT",
+      "ROUGH": "ITEM_MATERIAL_PADDING_ROUGH",
+      "THICK": "ITEM_MATERIAL_PADDING_THICK",
+      "STRONG": "ITEM_MATERIAL_PADDING_STRONG",
+
+      "WEAK": "ITEM_MATERIAL_PADDING_WEAK",
+      "STITCHED": "ITEM_MATERIAL_PADDING_STITCHED",
+      "PLAIN": "ITEM_MATERIAL_PADDING_PLAIN",
+      "DURABLE": "ITEM_MATERIAL_PADDING_DURABLE",
+      "DYNAMIC": "ITEM_MATERIAL_PADDING_DYNAMIC",
+      "VIBRANT": "ITEM_MATERIAL_PADDING_VIBRANT"
+    },
+    "ORNAMENT": {
+      "FLIMSY": "ITEM_MATERIAL_LEATHER_FLIMSY",
+      "PATCHED": "ITEM_MATERIAL_LEATHER_PATCHED",
+      "LIGHT": "ITEM_MATERIAL_LEATHER_LIGHT",
+      "ROUGH": "ITEM_MATERIAL_LEATHER_ROUGH",
+      "THICK": "ITEM_MATERIAL_LEATHER_THICK",
+      "STRONG": "ITEM_MATERIAL_LEATHER_STRONG",
+      "LEAD": "ITEM_MATERIAL_INGOT_COPPER",
+      "COPPER": "ITEM_MATERIAL_INGOT_COPPER",
+      "SILVER": "ITEM_MATERIAL_INGOT_SILVER",
+      "GOLD":   "ITEM_MATERIAL_INGOT_GOLD",
+      "PLATINUM": "ITEM_MATERIAL_INGOT_COPPER",
+      "MITHRIL": "ITEM_MATERIAL_INGOT_SILVER"
+    },
+    "BINDING": {
+      "FLIMSY": "ITEM_MATERIAL_BINDING_FLIMSY",
+      "PATCHED": "ITEM_MATERIAL_BINDING_PATCHED",
+      "LIGHT": "ITEM_MATERIAL_BINDING_LIGHT",
+      "ROUGH": "ITEM_MATERIAL_BINDING_ROUGH",
+      "THICK": "ITEM_MATERIAL_BINDING_THICK",
+      "STRONG": "ITEM_MATERIAL_BINDING_STRONG"
+    },
+    "PROCESSING": {
+      "MURKY": "ITEM_MATERIAL_CHEMICALS_MURKY",
+      "IMPURE": "ITEM_MATERIAL_CHEMICALS_IMPURE",
+      "CLEAR": "ITEM_MATERIAL_CHEMICALS_CLEAR",
+      "PURE": "ITEM_MATERIAL_CHEMICALS_PURE",
+      "BRIGHT": "ITEM_MATERIAL_CHEMICALS_BRIGHT",
+      "INFUSED": "ITEM_MATERIAL_CHEMICALS_INFUSED",
+      "DIRT": "ITEM_MATERIAL_COOLANT_DIRT",
+      "WATER": "ITEM_MATERIAL_COOLANT_WATER",
+      "SAND": "ITEM_MATERIAL_COOLANT_SAND",
+      "OIL": "ITEM_MATERIAL_COOLANT_OIL",
+      "ADVANCED": "ITEM_MATERIAL_COOLANT_ADVANCED",
+      "MYSTIC": "ITEM_MATERIAL_COOLANT_MYSTIC"
+    }
+  },
+  "modifiers": {
+    "RARITY": {
+      "PLAIN": 0,
+      "COMMON": 1,
+      "UNCOMMON": 2,
+      "RARE": 3,
+      "EPIC": 4,
+      "LEGENDARY": 5
+    },
+    "QUALITY": {
+      "POOR": 0,
+      "BASIC": 1,
+      "GOOD": 2,
+      "SUPERB": 3,
+      "EXCEPTIONAL": 4
+    }
+  },
+
+  "requirement_material_modifiers": {
+    "BLADE": "RARITY",
+    "PLATING": "RARITY",
+    "RINGS": "RARITY",
+    "SCALES": "RARITY",
+    "PADDING": "RARITY",
+    "ORNAMENT": "RARITY",
+    "BINDING": "QUALITY",
+    "PROCESSING": "QUALITY"
+  },
+  "equip_slot_modifiers": {
+    "SLOT_HEAD":    {"multiply": 2, "add": -2},
+    "SLOT_BODY":    {"multiply": 4, "add":  2},
+    "SLOT_CHEST":   {"multiply": 4, "add":  3},
+    "SLOT_WRIST":   {"multiply": 1, "add":  0},
+    "SLOT_HANDS":   {"multiply": 1, "add": -2},
+    "SLOT_WAIST":   {"multiply": 2, "add": -3},
+    "SLOT_LEGS":    {"multiply": 3, "add":  2},
+    "SLOT_SKIRT":   {"multiply": 3, "add":  3},
+    "SLOT_FEET":    {"multiply": 2, "add":  1},
+    "SLOT_HAND_R":  {"multiply": 3, "add":  0},
+    "SLOT_HAND_L":  {"multiply": 2, "add":  0},
+    "SLOT_BACK":    {"multiply": 3, "add":  0},
+    "SLOT_WRIST_L": {"multiply": 2, "add":  0},
+    "SLOT_WRIST_R": {"multiply": 2, "add":  0}
+  },
+  "item_type_material_components": {
+    "KNIFE": [],
+    "DAGGER": [],
+    "SWORD": [],
+    "SHORT_SWORD": [],
+    "RAPIER": [],
+    "SABRE": [],
+    "CUTLASS": [],
+    "SCIMITAR": [],
+    "KATANA": [],
+    "NINJATO": [],
+    "WAKIZASHI": [],
+    "LONG_SWORD": [],
+    "BROAD_SWORD": [],
+    "BASTARD_SWORD": [],
+    "GREAT_SWORD": [],
+    "AXE": [],
+    "HAND_AXE": [],
+    "HATCHET": [],
+    "BATTLE_AXE": [],
+    "GREAT_AXE": [],
+    "DOUBLE_AXE": [],
+    "CLUB": [],
+    "MACE": [],
+    "WAR_HAMMER": [],
+    "FLAIL": [],
+    "STAVE": [],
+    "POLEAXE": [],
+    "POLE_ARM": [],
+    "SPEAR": [],
+    "CLOTH": [],
+    "STUDDED_CLOTH": [],
+    "PLATED_CLOTH": [],
+    "LEATHER": [
+      {"component": "SCALES",     "material": "LEATHER",    "weight": 2},
+      {"component": "PADDING",    "material": "LEATHER",    "weight": 5},
+      {"component": "PROCESSING", "material": "CHEMICALS",  "weight": 4}
+    ],
+    "LEATHER_ARMOR": [
+      {"component": "SCALES",     "material": "LEATHER",    "weight": 6},
+      {"component": "PADDING",    "material": "LEATHER",    "weight": 3},
+      {"component": "PROCESSING", "material": "CHEMICALS",  "weight": 5}
+    ],
+    "STUDDED_LEATHER": [
+      {"component": "RINGS",      "material": "METAL",      "weight": 3},
+      {"component": "PADDING",    "material": "LEATHER",    "weight": 5},
+      {"component": "PROCESSING", "material": "CHEMICALS",  "weight": 6}
+    ],
+    "LAMINATED_ARMOR": [],
+    "CHAIN_MAIL": [
+      {"component": "RINGS",      "material": "METAL",      "weight": 8},
+      {"component": "PADDING",    "material": "LEATHER",    "weight": 3},
+      {"component": "PROCESSING", "material": "CHEMICALS",  "weight": 6}
+    ],
+    "SCALE_MAIL": [
+      {"component": "SCALES",     "material": "METAL",      "weight": 7},
+      {"component": "RINGS",      "material": "METAL",      "weight": 4},
+      {"component": "BINDING",    "material": "LEATHER",    "weight": 5},
+      {"component": "PROCESSING", "material": "CHEMICALS",  "weight": 8}
+    ],
+    "PLATE_MAIL": [
+      {"component": "PLATING",    "material": "METAL",      "weight": 3},
+      {"component": "RINGS",      "material": "METAL",      "weight": 0},
+      {"component": "ORNAMENT",   "material": "METAL",      "weight": 1},
+      {"component": "PADDING",    "material": "LEATHER",    "weight": 2},
+      {"component": "PROCESSING", "material": "CHEMICALS",  "weight": 6},
+      {"component": "PROCESSING", "material": "COOLANT",    "weight": 6}
+    ],
+    "WEAPON": [],
+    "ARMOR": [],
+    "CURRENCY": [],
+    "MATERIAL": [],
+    "QUEST": [],
+    "VEHICLE": [],
+    "MOUNT": [],
+    "GADGET": [],
+    "LORE": [],
+    "CONSTRUCTION": [],
+    "BUILDING": [],
+    "RECIPE": [],
+    "CONSUMABLE": [],
+    "CONTAINER": [],
+    "ESTATE": []
+  }
+}

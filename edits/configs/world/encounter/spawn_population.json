@@ -1,0 +1,75 @@
+{
+  "edit_id": "spawn_population",
+  "actor_groups": [
+    {
+      "id": "ANIMALS_POPULATION",
+      "leaders": ["ACTOR_HORSE"],
+      "followers": ["ACTOR_HORSE"]
+    },
+    {
+      "id": "DEFAULT_POPULATION",
+      "levels": [
+        {
+          "min": 0,
+          "max": 1,
+          "leaders": ["ACTOR_BANDIT_0"],
+          "followers": ["ACTOR_BANDIT_0"]
+        },
+        {
+          "min": 2,
+          "max": 3,
+          "leaders": ["ACTOR_BANDIT_1"],
+          "followers": ["ACTOR_BANDIT_0"]
+        },
+        {
+          "min": 4,
+          "max": 6,
+          "leaders": ["ACTOR_BANDIT_2"],
+          "followers": ["ACTOR_BANDIT_1", "ACTOR_BANDIT_0"]
+        },
+        {
+          "min": 7,
+          "max": 9,
+          "leaders": ["ACTOR_BANDIT_3"],
+          "followers": ["ACTOR_BANDIT_2","ACTOR_BANDIT_1", "ACTOR_BANDIT_0"]
+        },
+        {
+          "min": 10,
+          "max": 13,
+          "leaders": ["ACTOR_BANDIT_4"],
+          "followers": ["ACTOR_BANDIT_3","ACTOR_BANDIT_2","ACTOR_BANDIT_1"]
+        },
+        {
+          "min": 14,
+          "max": 16,
+          "leaders": ["ACTOR_BANDIT_5"],
+          "followers": ["ACTOR_BANDIT_4","ACTOR_BANDIT_3","ACTOR_BANDIT_2"]
+        },
+        {
+          "min": 17,
+          "max": 18,
+          "leaders": ["ACTOR_BANDIT_6"],
+          "followers": ["ACTOR_BANDIT_5","ACTOR_BANDIT_4","ACTOR_BANDIT_3"]
+        },
+        {
+          "min": 19,
+          "max": 20,
+          "leaders": ["ACTOR_BANDIT_7"],
+          "followers": ["ACTOR_BANDIT_6","ACTOR_BANDIT_5","ACTOR_BANDIT_4"]
+        },
+        {
+          "min": 20,
+          "max": 50,
+          "leaders": ["ACTOR_BANDIT_8"],
+          "followers": ["ACTOR_BANDIT_7","ACTOR_BANDIT_6","ACTOR_BANDIT_5"]
+        }
+      ]
+
+    },
+    {
+      "id": "GODS_POPULATION",
+      "leaders": ["ACTOR_GOD_1"],
+      "followers": ["ACTOR_GOD_2"]
+    }
+  ]
+}

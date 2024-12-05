@@ -1,0 +1,44 @@
+{
+  "edit_id": "nav_points",
+  "nav_bottom_bar": {
+    "nav_estate": [
+      {"id": "NAV_ESTATE", "name":"Home",         "pos": [-890, 3, 533], "cam":[-6, 9, -18], "player":[1, -1, -1]},
+      {"id": "NAV_PARTY",  "name":"Party",          "pos": [-892, 3, 531], "cam":[-7, 4, -4], "player":[1, -1, -1]},
+      {"id": "NAV_ALLIES", "name":"Allies",         "pos": [-886, 3, 532], "cam":[6, 4, -4], "player":[-1, -1, -1]},
+      {"id": "NAV_GARDEN", "name":"Garden",         "pos": [-882, 3, 540], "cam":[5, 7, 9], "player":[-1, -1, 2]}
+    ],
+    "nav_guild": [
+      {"id": "NAV_GUILD",       "name":"Guild",       "pos": [-854, 4, 495], "cam":[-2, 3, 6], "player":[0.5, 0, 1]},
+      {"id": "NAV_GUILD_HALL",  "name":"Guild Hall",  "pos": [-849, 4.5, 485], "cam":[3, 2, 2], "player":[0, 0, 1]},
+      {"id": "NAV_ROSTER",      "name":"Roster",      "pos": [-855, 4.5, 477], "cam":[-2, 2, -4], "player":[1, 0, 2]},
+      {"id": "NAV_VAULT",       "name":"Vault",       "pos": [-856, 16, 489], "cam":[4, 11, -17], "player":[1, 0, 2]},
+      {"id": "NAV_RAID",        "name":"Raid",        "pos": [-845, 4.5, 477], "cam":[4, 2, -1], "player":[1, 0, -2]}
+    ],
+    "nav_adventure": [
+      {"id": "NAV_MAP",   "name":"Map",           "pos": [-884, 2.1, 535], "cam":[2, 3, 4], "player":[-1, 0, -2]},
+      {"id": "NAV_CAVES", "name":"Caves",         "pos": [-823, 5, 604], "cam":[-8, 6, -3], "player":[1, 0, -1]},
+      {"id": "NAV_TOWN",  "name":"Town",          "pos": [-730, 4, 519], "cam":[-22, 17, 34], "player":[2, 0, 3]},
+      {"id": "NAV_BOAT",  "name":"Boat",          "pos": [-900, 0.5, 522], "cam":[-7, 11, -7], "player":[-1, 0, -2]},
+      {"id": "NAV_HUNT",  "name":"Hunt",          "pos": [-872, 2.1, 523], "cam":[-9, 5, -1], "player":[0.3, 0, 1]}
+    ],
+    "nav_characters": [
+      {"id": "NAV_A",     "name":"Heroes"     },
+      {"id": "NAV_B",     "name":"Companions" },
+      {"id": "NAV_C",     "name":"Allies"     }
+    ],
+    "variations": [
+      {
+        "id": "b",
+        "modify": [
+          {
+            "nav_characters": [
+            {"id": "NAV_A",  "name":"Party"    },
+            {"id": "NAV_B",  "name":"Allies"   },
+            {"id": "NAV_C",  "name":"Pets"     }
+          ]
+          }
+        ]
+      }
+    ]
+  }
+}
