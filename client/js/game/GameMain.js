@@ -178,13 +178,9 @@ class GameMain {
 
         if (isDev()) {
             console.log("Player Main Status:", GameAPI.getPlayerMain().status.statusMap)
-            client.page = GuiAPI.activatePage('page_start')
-            GameAPI.gameAdventureSystem.call.activateAdventures()
+        //    client.page = GuiAPI.activatePage('page_start')
+        //    GameAPI.gameAdventureSystem.call.activateAdventures()
             GuiAPI.activateMinimap()
-            setTimeout(function() {
-            //    initiateEstates();
-                GameAPI.worldModels.activateWorldLevelEstates("20")
-            }, 3000);
 
         } else {
 

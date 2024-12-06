@@ -222,9 +222,6 @@ function update() {
             let value = getSetting(key);
             if (value !== statusMap[key]) {
                 setSetting(key, statusMap[key])
-                let actor = getPlayerActor();
-                actor.actorText.say(key+' '+statusMap[key])
-            //    storePlayerStatus();
             }
         }
     }

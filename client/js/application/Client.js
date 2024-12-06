@@ -128,7 +128,7 @@ class Client {
 
                 ThreeAPI.initThreeTerrain();
             //    client.page = GuiAPI.activatePage('page_start'); // Edit Mode char select page
-                }, 10)
+                }, 1000)
         };
 
         client.setup.initUiSetup(callback);

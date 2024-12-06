@@ -105,9 +105,9 @@ function pageSettingChangeTest(pageId, settingKey) {
 function updateDebugView() {
     updateSystemDebug();
 
-    if (getSetting(ENUMS.Settings.DEBUG_VIEW_PHYSICS_SENSORS)) {
+   // if (getSetting(ENUMS.Settings.DEBUG_VIEW_PHYSICS_SENSORS)) {
         debugDrawPhysicalWorld()
-    }
+  //  }
 
     if (getSetting(ENUMS.Settings.DEBUG_VIEW_PHYSICS_AABBS)) {
         debugDrawPhysicalAABBs()

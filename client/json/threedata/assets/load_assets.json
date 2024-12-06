@@ -12,17 +12,6 @@
       "TEXTURES"
     ],
     "POLL_INDEX":[
-      "/world/adventure/adventures.json"                      ,
-      "/ui/pages/debug/gui_page_status.json"             ,
-      "/ui/pages/debug/gui_page_perf_mon.json"               ,
-      "/world/locations/location_keep_fisherman.json"         ,
-      "/world/encounters/encounters_portals.json",
-      "/world/locations/world/location_world_portals.json"       ,
-      "/world/locations/caverns_10/location_caverns_10_bandit_keep.json"   ,
-      "/world/locations/caverns_08/location_caverns_08_cavern_keep.json"   ,
-      "/world/locations/location_bandit_keep.json"           ,
-      "/world/encounters/encounters_outlaw.json"               ,
-      "/world/locations/models/models_bandit_keep.json"         ,
       "/threedata/shaders/three_shader_programs.json"        ,
       "/threedata/shaders/three_terrain_shader.json"
 

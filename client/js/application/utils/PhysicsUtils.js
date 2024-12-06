@@ -77,7 +77,10 @@ function debugDrawPhysicalAABBs() {
 function debugDrawPhysicalWorld() {
 
     let pos = ThreeAPI.getCameraCursor().getPos();
-    pos.y = ThreeAPI.terrainAt(pos) - 0.1;
+
+  //  let terrainHeight = ThreeAPI.terrainAt(pos);
+
+    pos.y = ThreeAPI.terrainAt(pos, tempVec3) - 0.1;
     let intersects = physicalIntersection(pos, tempVec);
 
     tempVec3.copy(pos);

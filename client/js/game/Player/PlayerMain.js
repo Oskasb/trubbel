@@ -221,6 +221,7 @@ class PlayerMain {
         }
 
         let worldLoaded = function() {
+            console.log("worldLoaded Event----------")
             if (typeof (loadEncounters) === 'function') {
                 loadEncounters();
             }

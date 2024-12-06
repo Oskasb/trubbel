@@ -167,8 +167,9 @@ class GuiAPI {
         if (minimap === null) {
             minimap = new DomMinimap()
         }
+
         if (domWorldHud === null) {
-            domWorldHud = new DomWorldHud()
+            domWorldHud = true // new DomWorldHud()
             new DomChat();
         }
 

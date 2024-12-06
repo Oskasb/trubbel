@@ -57,8 +57,10 @@
           "varying float elevationFactor;",
           "varying float distScaleX;",
           "varying float distScaleZ;",
+          "varying float unitScale;",
           "void main(){",
 
+          "unitScale = texelRowSelect.x;",
           "vec3 scalePos = position*1.0;",
 
           "float elementScale = texelRowSelect.w;",
@@ -84,7 +86,7 @@
 
           "float txw = heightmaptiles.z;",
           "float txPointOffset = 1.0/(txw+1.0);",
-          "float tileFactor = elevationFactor*2.0/(txw);",
+          "float tileFactor = elevationFactor*1.0/(txw);",
 
           "float shift = txPointOffset * 1.0;",
           "float shiftSubOne = 1.0/(txw-1.0);",
@@ -99,11 +101,11 @@
           "terrainPosition.y = 0.0;",
           "terrainPosition.z = scalePos.z*tileFactor;",
 
-          "scaledVPos.x =  ((center.x*(1.0-shift)) * shiftSubOne+shift*0.0  + (terrainPosition.x ) * 0.5 + 0.5);",
-          "scaledVPos.y =  ((center.y*(1.0-shift)) * shiftSubOne+shift*0.0  + (terrainPosition.z ) * 0.5 + 0.5);",
+          "scaledVPos.x =  ((center.x*(1.0-shift)) * shiftSubOne  + (terrainPosition.x ) * 1.0 + 0.0) / unitScale;",
+          "scaledVPos.y =  ((center.y*(1.0-shift)) * shiftSubOne  + (terrainPosition.z ) * 1.0 + 0.0) / unitScale;",
 
-          "scaledVPos.x = floor((1.0+distScaleX)*scaledVPos.x*2.0*(txw))*0.5*shift;",
-          "scaledVPos.y = floor((1.0+distScaleZ)*scaledVPos.y*2.0*(txw))*0.5*shift;",
+          "scaledVPos.x = floor((1.0+distScaleX)*scaledVPos.x*1.0*(txw))*0.5*shift;",
+          "scaledVPos.y = floor((1.0+distScaleZ)*scaledVPos.y*1.0*(txw))*0.5*shift;",
 
 
           "vUv.x = mod((scalePos.x/256.0)+0.5, 1.0);",
@@ -180,6 +182,7 @@
           "varying vec3 waveSmall;",
           "varying vec3 waveBig;",
           "varying float elevationFactor;",
+          "varying float unitScale;",
           "void main(){",
 
           "vec2 tileScale = 1.0/tx0tiles;",
@@ -195,7 +198,7 @@
           "vec2 scaledUv = tileUv*tileScale;",
 
 
-          "vec4 sample = texture2D( heightmap, scaledVPos);",
+          "vec4 sample = texture2D( heightmap, scaledVPos );",
 
           "float height = sample.r;",
 
@@ -312,25 +315,28 @@
           "varying vec2 scaledVPos;",
           "varying vec2 center;",
           "varying float elevationFactor;",
+          "varying float unitScale;",
           "void main(){",
 
-          "float elementScale = texelRowSelect.w*1.0;",
+          "unitScale = texelRowSelect.x;",
+
+          "float elementScale = texelRowSelect.w*1.0*unitScale;",
           "float outerness =  texelRowSelect.z;",
 
           "elevationFactor = elementScale;",
 
           "float txw = heightmaptiles.z;",
-          "float txPointOffset = 1.0/(txw+0.0);",
-          "float tileFactorX = 2.0/(txw);",
-          "float tileFactorZ = 2.0/(txw);",
+          "float txPointOffset = 1.0/(txw-0.5);",
+          "float tileFactorX = 1.0/(txw);",
+          "float tileFactorZ = 1.0/(txw);",
 
-          "vPosition.x = (position.x )*elevationFactor;",
-          "vPosition.z = (position.z )*elevationFactor;",
+          "vPosition.x = (position.x-0.5 )*elevationFactor;",
+          "vPosition.z = (position.z-0.5 )*elevationFactor;",
 
           "float shift = txPointOffset * 1.0;",
           "float shiftSubOne = 1.0/(txw-1.0);",
-          "center.x = floor(0.5 + offset.x / elementScale) * elementScale;",
-          "center.y = floor(0.5 + offset.z / elementScale) * elementScale;",
+          "center.x = floor(0.0 + offset.x / elementScale) * elementScale;",
+          "center.y = floor(0.0 + offset.z / elementScale) * elementScale;",
           "vec4 quat = orientation.xyzw;",
 
           "terrainPosition.x = vPosition.x*tileFactorX;",
@@ -339,11 +345,11 @@
 
           "tileOffset = vec2(0.0, 0.0);",
 
-          "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.x ) * 0.5 + 0.5);",
-          "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.z ) * 0.5 + 0.5);",
+          "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.x ));",
+          "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.z ));",
 
-          "scaledVPos.x = floor(scaledVPos.x*2.0*(txw))*0.5*shift;",
-          "scaledVPos.y = floor(scaledVPos.y*2.0*(txw))*0.5*shift;",
+          "scaledVPos.x = floor(scaledVPos.x*1.0*(txw))*0.5*shift / unitScale;",
+          "scaledVPos.y = floor(scaledVPos.y*1.0*(txw))*0.5*shift / unitScale;",
 
           "heightSampler.x = scaledVPos.x;",
           "heightSampler.y = scaledVPos.y;",
@@ -389,6 +395,7 @@
           "varying vec3 terrainPosition;",
           "varying vec2 scaledVPos;",
           "varying float elevationFactor;",
+          "varying float unitScale;",
           "void main(){",
 
 

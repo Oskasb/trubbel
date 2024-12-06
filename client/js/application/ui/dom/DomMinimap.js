@@ -10,6 +10,7 @@ import {PerformanceMonitorUiSystem} from "../gui/systems/PerformanceMonitorUiSys
 import {isDev} from "../../utils/DebugUtils.js";
 import {getPlayerStatus, getSetting, setPlayerStatus} from "../../utils/StatusUtils.js";
 import {getPlayerActor} from "../../utils/ActorUtils.js";
+import {DomSettings} from "./DomSettings.js";
 
 let tempVec2 = new Vector2()
 let worldSize = 2048;
@@ -444,7 +445,13 @@ class DomMinimap {
             GuiAPI.setNavigationState(ENUMS.NavigationState.SETTINGS);
             setTimeout(function() {
                 client.setClientStatus(ENUMS.ActorStatus.NAVIGATION_STATE, ENUMS.NavigationState.SETTINGS)
-                GuiAPI.setNavigationState(ENUMS.NavigationState.SETTINGS);
+                let settingsPage = new DomSettings();
+
+                function onCloseCB() {
+                    console.log("Settings Page closed")
+                }
+                settingsPage.initDomSettings(onCloseCB)
+
             }, 200)
         }
 

@@ -149,11 +149,11 @@
             }
         };
         window.pollingOn = false;
-        if (window.location.href === 'http://127.0.0.1:3000/' || window.location.href ===  'http://localhost:5001/' || window.location.href ===  'http://localhost:5006/' || window.location.href ===  'http://192.168.0.100:3000/') {
+    //    if (window.location.href === 'http://127.0.0.1:3000/' || window.location.href ===  'http://localhost:5001/' || window.location.href ===  'http://localhost:5006/' || window.location.href ===  'http://192.168.0.100:3000/') {
             if (dev === true) {
                 window.pollingOn = true;
             }
-        }
+    //    }
 
         const dataPipelineOptions = {
             "jsonRegUrl":"client/json/config_urls.json",

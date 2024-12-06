@@ -27,6 +27,7 @@ let width = null;
 let height = null;
 let terrainWidth = null;
 let terrainHeight = null;
+let terrainUnitSize = null;
 let maxLodLevel = 6;
 let terrainContext = null;
 let heightmapContext = null;
@@ -108,7 +109,7 @@ let setupHeightmapData = function(originalModelMat) {
 
     terrainMaterial.uniforms.heightmaptiles.value.x = 1;
     terrainMaterial.uniforms.heightmaptiles.value.y = 1;
-    terrainMaterial.uniforms.heightmaptiles.value.z = 2048;
+    terrainMaterial.uniforms.heightmaptiles.value.z = 1024;
     terrainMaterial.needsUpdate = true;
 
 
@@ -121,7 +122,7 @@ let setupHeightmapData = function(originalModelMat) {
 
     oceanMaterial.uniforms.heightmaptiles.value.x = 1;
     oceanMaterial.uniforms.heightmaptiles.value.y = 1;
-    oceanMaterial.uniforms.heightmaptiles.value.z = 2048;
+    oceanMaterial.uniforms.heightmaptiles.value.z = 1024;
     oceanMaterial.needsUpdate = true;
 
     registerWorldLevel("20");
@@ -171,7 +172,7 @@ function setupAmmoTerrainBody(canvasData, config) {
 
     let heightfieldData = new Float32Array( rgbaR );
 
-    let w = config.dimensions['tx_width'];
+    let w = config.dimensions['tx_width'] * terrainUnitSize;
 
     terrainAmmoBody = AmmoAPI.buildPhysicalTerrain(rgbaR, w, 0, 0, -3, 97);
     getPhysicalWorld().registerTerrainBody(terrainAmmoBody)
@@ -199,22 +200,6 @@ let addGroundSection = function(lodScale, x, z, index) {
 
 }
 
-let addOceanSection = function(lodScale, x, z, index) {
-
-    if (activeOcean[index]) {
-        console.log("Old not removed!")
-        return;
-    }
-
-    let oceanCB = function(ocean) {
-        activeOcean[index] = ocean;
-        positionSectionInstance(ocean, lodScale, x, -3.0, z);
-    }
-
-    client.dynamicMain.requestAssetInstance("asset_ocean_big", oceanCB)
-
-}
-
 let attachSection = function(lodScale, x, z, index) {
 
     if (availableGround.length === 0) {
@@ -224,32 +209,20 @@ let attachSection = function(lodScale, x, z, index) {
         activeGround[index] = ground;
         positionSectionInstance(ground, lodScale, x, 0.0, z);
     }
-/*
-    if (availableOcean.length === 0) {
-        addOceanSection(lodScale, x, z, index)
-    } else {
-        let ocean = availableOcean.pop();
-        activeOcean[index] = ocean;
-        positionSectionInstance(ocean, lodScale, x, -3.0, z);
-    }
-*/
+
 }
 
 let positionSectionInstance = function(instance, lodScale, x, y, z) {
     instance.getSpatial().setPosXYZ(x, y, z);
-    instance.setAttributev4('texelRowSelect',{x:1, y:1, z:lodScale, w:lodScale})
+    instance.setAttributev4('texelRowSelect',{x:terrainUnitSize, y:1, z:lodScale, w:lodScale})
 }
 
 let detachSection = function(index) {
-//    availableGround.push(activeGround[index])
-//    availableOcean.push(activeOcean[index])
-    activeGround[index].decommissionInstancedModel()
-  //  activeOcean[index].decommissionInstancedModel()
 
+    activeGround[index].decommissionInstancedModel()
     positionSectionInstance(activeGround[index], 0, 9880, 4 + 2*index, 530)
-  //  positionSectionInstance(activeOcean[index],  0, 9890, 4 + 2*index, 530)
     activeGround[index] = null;
-  //  activeOcean[index] = null;
+
 }
 
 let uploadSlices = 64;
@@ -404,16 +377,23 @@ let updateBigGeo = function(tpf) {
   //  oceanInstances[1].getSpatial().setPosXYZ(posX, -3.0, posZ);
     for (let i = 0; i < oceanInstances.length; i++) {
         if (i === 1) {
-            oceanInstances[i].getSpatial().setPosXYZ(posX, 0.0, posZ);
+            positionSectionInstance(oceanInstances[i], 1, posX, 0.0, posZ);
+            // oceanInstances[i].getSpatial().setPosXYZ(posX, 0.0, posZ);
         }
     }
 
 
-    groundInstances[0].getSpatial().setPosXYZ(posX, 0.0, posZ);
+  //  groundInstances[0].getSpatial().setPosXYZ(posX, 0.0, posZ);
+  //  groundInstances[0].setAttributev4('texelRowSelect',{x:terrainUnitSize*0.8, y:1, z:1, w:1})
+
+    positionSectionInstance(groundInstances[0], 1, posX, 0.0, posZ);
+
     let index = 1;
     visibleCount = 0;
 
     let elevAdjustedLayers = lodLayers // Math.clamp(1 + Math.floor(MATH.curveSqrt(camY*0.25) / 4), 1, lodLayers)
+
+    let scaleFactor = terrainUnitSize*centerSize
 
     for (let l = 0; l < elevAdjustedLayers; l++) {
         let lodLayer = l;
@@ -422,10 +402,10 @@ let updateBigGeo = function(tpf) {
             let lodScale = layerScale[lodLayer]
         //    let tileIndex = index+lodLayer*
 
-            tempPoint.set(posX + centerSize*gridOffsets[i][0]*lodScale, 0.0, posZ + centerSize*gridOffsets[i][1]*lodScale)
+            tempPoint.set(posX + scaleFactor*gridOffsets[i][0]*lodScale, 0.0, posZ + scaleFactor*gridOffsets[i][1]*lodScale)
         //    let visible = ThreeAPI.testPosIsVisible(tempPoint);
 
-            let visible = aaBoxTestVisibility(tempPoint, centerSize*lodScale, 100, centerSize*lodScale)
+            let visible = aaBoxTestVisibility(tempPoint, scaleFactor*lodScale, 100, scaleFactor*lodScale)
             let borrowedBox = borrowBox();
 
 
@@ -678,6 +658,12 @@ class TerrainBigGeometry {
         terrainParams.groundTxWidth = groundTxWidth;
         terrainParams.minHeight = dims.min_height;
         terrainParams.maxHeight = dims.max_height;
+
+        let worldLevel = GameAPI.getPlayer().getStatus(ENUMS.PlayerStatus.PLAYER_WORLD_LEVEL)
+        let levelCfg = GameAPI.gameMain.getWorldLevelConfig(""+worldLevel)
+        console.log("WORLD LEVEL CONFIG >>> ", levelCfg);
+        terrainUnitSize = levelCfg.unit || 1;
+        terrainParams.unitScale = terrainUnitSize;
     //    terrainParams.tiles = tiles;
 
         let updateBigGeo = this.call.updateBigGeo;

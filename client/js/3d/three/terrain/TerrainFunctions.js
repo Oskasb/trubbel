@@ -12,6 +12,7 @@ let points = [];
 
 let calcVec1 = new Vector3();
 let calcVec2 = new Vector3();
+let scaleVec = new Vector3();
 let physicsApi;
 let iWeightCurve;
 let jWeightCurve;
@@ -186,7 +187,7 @@ let  sliceGeometryAtSeaLevel = function(vertices, maxDepth) {
 
 
 
-let getTriangleAt = function(array1d, segments, x, y, terrainScale, terrainOrigin, groundData) {
+let getTriangleAt = function(array1d, segments, x, y, terrainScale, terrainOrigin, groundData, unitScale) {
 
     let zScale = terrainScale.y;
     let zOffset = terrainOrigin.y;
@@ -222,42 +223,33 @@ let getTriangleAt = function(array1d, segments, x, y, terrainScale, terrainOrigi
     return points;
 };
 
-let getDisplacedHeight = function(array1d, segments, x, z, htP, htN, normalStore, terrainScale, terrainOrigin, groundData) {
+let getDisplacedHeight = function(array1d, segments, unitScale, x, z, htP, htN, normalStore, terrainScale, terrainOrigin, groundData) {
+ //   console.log(groundData)
+ //   let unitScale = groundData.unitScale;
     let  tx = displaceAxisDimensions(x, htN, htP, segments);
     let  tz = displaceAxisDimensions(z, htN, htP, segments);
 
-    return getPreciseHeight(array1d, segments, tx, tz, normalStore, htN, htP, terrainScale, terrainOrigin, groundData);
+    return getPreciseHeight(array1d, segments, unitScale, tx, tz, normalStore, htN, htP, terrainScale, terrainOrigin, groundData);
 
 };
 
-let getHeightAt = function(pos, array1d, terrainSize, segments, normalStore, terrainScale, terrainOrigin, groundData) {
+let getHeightAt = function(pos, array1d, unitScale, terrainSize, segments, normalStore, terrainScale, terrainOrigin, groundData) {
 
-    let htP = segments*0.5;
-    let htN = - htP;
+    let x = pos.x;
+    let z = pos.z;
 
-    if (pos.x < htN || pos.z < htN) {
-    //    console.log("Terrain!", pos.x, pos.z, htP, htN ,"Is Outside WORKER");
-    //    GuiAPI.printDebugText("Is Outside Terrain at "+pos.x < htN+" "+pos.z < htN)
+    let htP = segments* unitScale;
+    let htN = 0;
+
+    if (x < htN || z < htN || x > htP  || z > htP) {
+        console.log("Terrain HEIGHT", pos.x, pos.z, htP, htN ,"Is Outside");
         if (normalStore) {
             normalStore.set(0, 1, 0)
         }
         return -3;
-        pos.x = MATH.clamp(pos.x, htN, htP);
-        pos.z = MATH.clamp(pos.z, htN, htP);
     }
 
-    if (pos.x > htP  || pos.z > htP) {
-    //    console.log("Terrain!", pos.x, pos.z, htP, htN ,"Is Outside WORKER");
-  //   GuiAPI.printDebugText("Is Outside Terrain at "+pos.x > htP+" "+ pos.z > htP)
-        if (normalStore) {
-            normalStore.set(0, 1, 0)
-        }
-             return -3;
-        pos.x = MATH.clamp(pos.x, htN, htP);
-        pos.z = MATH.clamp(pos.z, htN, htP);
-    }
-
-    return getDisplacedHeight(array1d, segments, pos.x, pos.z, htP, htN, normalStore, terrainScale, terrainOrigin, groundData);
+    return getDisplacedHeight(array1d, segments, unitScale, x, z, htP, htN, normalStore, terrainScale, terrainOrigin, groundData);
 };
 
 
@@ -297,9 +289,9 @@ let getDisplacedGround = function(array1d, segments, x, z, htP, htN, dataStore) 
     return getGroundTexel(array1d, segments, tx, tz, dataStore);
 };
 
-let getGroundDataAt = function(pos, array1d, terrainSize, segments, dataStore) {
-    let htP = terrainSize*0.5;
-    let htN = - htP;
+let getGroundDataAt = function(pos, array1d, unitScale, terrainSize, segments, dataStore) {
+    let htP = terrainSize;
+    let htN = 0;
 
     if (pos.x < htN || pos.z < htN) {
         console.log("Terrain!", pos.x, pos.z, htP, htN ,"Is Outside WORKER");
@@ -719,8 +711,9 @@ let getTerrainBuffers = function(terrain) {
 };
 
 
-let getPreciseHeight = function(array1d, segments, x, z, normalStore, htN, htP, terrainScale, terrainOrigin, groundData) {
-    let  tri = getTriangleAt(array1d, segments, x, z, terrainScale, terrainOrigin, groundData);
+let getPreciseHeight = function(array1d, segments, unitScale, x, z, normalStore, htN, htP, terrainScale, terrainOrigin, groundData) {
+
+    let  tri = getTriangleAt(array1d, segments, x, z, terrainScale, terrainOrigin, groundData, unitScale);
 
     setTri(p0, x, z, 0);
 
@@ -763,10 +756,12 @@ let getPreciseHeight = function(array1d, segments, x, z, normalStore, htN, htP, 
         evt.dispatch(ENUMS.Event.DEBUG_DRAW_CROSS, {pos:triangle.b, color:'GREEN', size:0.2});
         evt.dispatch(ENUMS.Event.DEBUG_DRAW_CROSS, {pos:triangle.c, color:'GREEN', size:0.2});
 
+*/
+
         evt.dispatch(ENUMS.Event.DEBUG_DRAW_LINE, {from:triangle.a, to:triangle.b, color:'AQUA'});
         evt.dispatch(ENUMS.Event.DEBUG_DRAW_LINE, {from:triangle.b, to:triangle.c, color:'AQUA'});
         evt.dispatch(ENUMS.Event.DEBUG_DRAW_LINE, {from:triangle.c, to:triangle.a, color:'AQUA'});
-*/
+
     }
 
     return find.z;

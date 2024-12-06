@@ -84,12 +84,12 @@ let getThreeTerrainHeightAt = function(pos, normalStore, groundData) {
     }
 
     let params = terrainBigGeometry.getTerrainParams()
-    return TerrainFunctions.getHeightAt(pos, terrainBigGeometry.getHeightmapData(), params.tx_width, params.tx_width - 1, normalStore, terrainScale, terrainOrigin, groundData);
+    return TerrainFunctions.getHeightAt(pos, terrainBigGeometry.getHeightmapData(), params.unitScale, params.tx_width, params.tx_width - 1, normalStore, terrainScale, terrainOrigin, groundData);
 };
 
 let getThreeTerrainDataAt = function(pos, dataStore) {
     let params = terrainBigGeometry.getTerrainParams()
-    return TerrainFunctions.getGroundDataAt(pos, terrainBigGeometry.getGroundData(), params.groundTxWidth, params.groundTxWidth - 1, dataStore);
+    return TerrainFunctions.getGroundDataAt(pos, terrainBigGeometry.getGroundData(), params.unitScale, params.groundTxWidth, params.groundTxWidth - 1, dataStore);
 }
 
 let shadeThreeTerrainDataAt = function(pos, size, channelIndex, operation, intensity, shadeDoneCallback) {

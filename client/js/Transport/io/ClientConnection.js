@@ -37,7 +37,10 @@ let relayToWorker = function(msg) {
 function setupUniqueConnection(stamp) {
 	console.log("Set Stamp from message", stamp);
 	client.setStamp(stamp);
-	GameAPI.initGameMain();
+	setTimeout(function() {
+		GameAPI.initGameMain();
+	}, 1000)
+
 }
 
 function handleWorkerMessage(msg) {
