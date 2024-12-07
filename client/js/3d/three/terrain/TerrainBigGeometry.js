@@ -172,7 +172,7 @@ function setupAmmoTerrainBody(canvasData, config) {
 
     let heightfieldData = new Float32Array( rgbaR );
 
-    let w = config.dimensions['tx_width'] * terrainUnitSize;
+    let w = (config.dimensions['tx_width']-1) * terrainUnitSize;
 
     terrainAmmoBody = AmmoAPI.buildPhysicalTerrain(rgbaR, w, w*0.5, w*0.5, -3, 97);
     getPhysicalWorld().registerTerrainBody(terrainAmmoBody)
