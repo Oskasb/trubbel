@@ -325,8 +325,8 @@
 
           "elevationFactor = elementScale;",
 
-          "float txw = heightmaptiles.z;",
-          "float txPointOffset = 1.0/(txw-0.5);",
+          "float txw = heightmaptiles.z-1.0;",
+          "float txPointOffset = 1.0/(txw+0.0);",
           "float tileFactorX = 1.0/(txw);",
           "float tileFactorZ = 1.0/(txw);",
 
@@ -345,8 +345,8 @@
 
           "tileOffset = vec2(0.0, 0.0);",
 
-          "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.x ));",
-          "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.z ));",
+          "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift*1.000+shift*0.0  + (terrainPosition.x ));",
+          "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift*1.000+shift*0.0  + (terrainPosition.z ));",
 
           "scaledVPos.x = floor(scaledVPos.x*1.0*(txw))*0.5*shift / unitScale;",
           "scaledVPos.y = floor(scaledVPos.y*1.0*(txw))*0.5*shift / unitScale;",
