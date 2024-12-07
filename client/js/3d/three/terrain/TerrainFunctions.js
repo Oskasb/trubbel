@@ -238,7 +238,7 @@ let getHeightAt = function(pos, array1d, unitScale, terrainSize, segments, norma
     let x = pos.x;
     let z = pos.z;
 
-    let htP = segments* unitScale;
+    let htP = segments * unitScale;
     let htN = 0;
 
     if (x < htN || z < htN || x > htP  || z > htP) {

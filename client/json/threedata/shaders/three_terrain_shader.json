@@ -348,8 +348,8 @@
           "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift*1.000+shift*0.0  + (terrainPosition.x ));",
           "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift*1.000+shift*0.0  + (terrainPosition.z ));",
 
-          "scaledVPos.x = floor(scaledVPos.x*1.0*(txw))*0.5*shift / unitScale;",
-          "scaledVPos.y = floor(scaledVPos.y*1.0*(txw))*0.5*shift / unitScale;",
+          "scaledVPos.x = (scaledVPos.x*1.0*(txw))*0.5*shift / unitScale;",
+          "scaledVPos.y = (scaledVPos.y*1.0*(txw))*0.5*shift / unitScale;",
 
           "heightSampler.x = scaledVPos.x;",
           "heightSampler.y = scaledVPos.y;",
