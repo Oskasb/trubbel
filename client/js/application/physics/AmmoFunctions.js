@@ -958,7 +958,7 @@ class AmmoFunctions {
 
    //     console.log("createPhysicalTerrain", totalSize, posx, posz, minHeight, maxHeight);
 
-        let margin = 0.2;
+        let margin = 1;
 
         let terrainMaxHeight = maxHeight;
         let terrainMinHeight = minHeight;
