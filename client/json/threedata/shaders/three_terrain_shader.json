@@ -61,7 +61,7 @@
           "void main(){",
 
           "unitScale = texelRowSelect.x;",
-          "vec3 scalePos = position*1.0;",
+          "vec3 scalePos = position;",
 
           "float elementScale = texelRowSelect.w;",
           "float outerness =  texelRowSelect.z;",
@@ -101,18 +101,18 @@
           "terrainPosition.y = 0.0;",
           "terrainPosition.z = scalePos.z*tileFactor;",
 
-          "scaledVPos.x =  ((center.x*(1.0-shift)) * shiftSubOne  + (terrainPosition.x ) * 1.0 + 0.0) / unitScale;",
-          "scaledVPos.y =  ((center.y*(1.0-shift)) * shiftSubOne  + (terrainPosition.z ) * 1.0 + 0.0) / unitScale;",
+          "scaledVPos.x =  ((center.x*(1.0-shift)) * shiftSubOne  + (terrainPosition.x ) * 1.0 + 0.0) ;",
+          "scaledVPos.y =  ((center.y*(1.0-shift)) * shiftSubOne  + (terrainPosition.z ) * 1.0 + 0.0) ;",
 
-          "scaledVPos.x = floor((1.0+distScaleX)*scaledVPos.x*1.0*(txw))*0.5*shift;",
-          "scaledVPos.y = floor((1.0+distScaleZ)*scaledVPos.y*1.0*(txw))*0.5*shift;",
+          "scaledVPos.x = ((1.0+distScaleX)*scaledVPos.x*1.0*(txw))*0.5*shift/ unitScale;",
+          "scaledVPos.y = ((1.0+distScaleZ)*scaledVPos.y*1.0*(txw))*0.5*shift/ unitScale;",
 
 
           "vUv.x = mod((scalePos.x/256.0)+0.5, 1.0);",
           "vUv.y = mod((scalePos.z/256.0)+0.5, 1.0);",
 
-          "vPosition.x += center.x -0.5;",
-          "vPosition.z += center.y -0.5;",
+          "vPosition.x += center.x -0.5*unitScale;",
+          "vPosition.z += center.y -0.5*unitScale;",
 
           "float waveX = sin(vPosition.x*12.0 + vPosition.z*1.0 + systemTime*0.60);",
           "float waveY = cos(vPosition.x*1.0 + vPosition.z*8.0 + systemTime*0.90);",
@@ -334,7 +334,6 @@
           "vPosition.z = (position.z-0.5 )*elevationFactor;",
 
           "float shift = txPointOffset;",
-          "float shiftSubOne = 1.0/(txw-1.0);",
           "center.x = floor(0.0 + offset.x / elementScale) * elementScale;",
           "center.y = floor(0.0 + offset.z / elementScale) * elementScale;",
           "vec4 quat = orientation.xyzw;",
@@ -360,8 +359,8 @@
           "vUv.y = mod((vPosition.z/outerness/256.0)+0.5, 1.0);",
 
           "vPosition.y = -3.0 + sample.x * scale3d.y;",
-          "vPosition.x += center.x -0.5;",
-          "vPosition.z += center.y -0.5;",
+          "vPosition.x += center.x -0.5*unitScale;",
+          "vPosition.z += center.y -0.5*unitScale;",
 
 
           "gl_Position = projectionMatrix * modelViewMatrix * vec4( vPosition, 1.0 );",
