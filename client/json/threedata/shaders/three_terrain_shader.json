@@ -85,8 +85,8 @@
           "vPosition.z = scalePos.z*elevationFactor;",
 
           "float txw = heightmaptiles.z;",
-          "float txPointOffset = 1.0/(txw+1.0);",
-          "float tileFactor = elevationFactor*1.0/(txw);",
+          "float txPointOffset = 1.0/txw;",
+          "float tileFactor = elevationFactor/txw;",
 
           "float shift = txPointOffset * 1.0;",
           "float shiftSubOne = 1.0/(txw-1.0);",
@@ -326,14 +326,14 @@
           "elevationFactor = elementScale;",
 
           "float txw = heightmaptiles.z-1.0;",
-          "float txPointOffset = 1.0/(txw+0.0);",
-          "float tileFactorX = 1.0/(txw);",
-          "float tileFactorZ = 1.0/(txw);",
+          "float txPointOffset = 1.0/txw;",
+          "float tileFactorX = 1.0/txw;",
+          "float tileFactorZ = 1.0/txw;",
 
           "vPosition.x = (position.x-0.5 )*elevationFactor;",
           "vPosition.z = (position.z-0.5 )*elevationFactor;",
 
-          "float shift = txPointOffset * 1.0;",
+          "float shift = txPointOffset;",
           "float shiftSubOne = 1.0/(txw-1.0);",
           "center.x = floor(0.0 + offset.x / elementScale) * elementScale;",
           "center.y = floor(0.0 + offset.z / elementScale) * elementScale;",
@@ -345,11 +345,11 @@
 
           "tileOffset = vec2(0.0, 0.0);",
 
-          "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift*1.000+shift*0.0  + (terrainPosition.x ));",
-          "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift*1.000+shift*0.0  + (terrainPosition.z ));",
+          "scaledVPos.x =  (((center.x)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.x ));",
+          "scaledVPos.y =  (((center.y)*(1.0-shift)) * shift+shift*0.0  + (terrainPosition.z ));",
 
-          "scaledVPos.x = (scaledVPos.x*1.0*(txw))*0.5*shift / unitScale;",
-          "scaledVPos.y = (scaledVPos.y*1.0*(txw))*0.5*shift / unitScale;",
+          "scaledVPos.x = (scaledVPos.x*(txw))*0.5*shift / unitScale;",
+          "scaledVPos.y = (scaledVPos.y*(txw))*0.5*shift / unitScale;",
 
           "heightSampler.x = scaledVPos.x;",
           "heightSampler.y = scaledVPos.y;",
