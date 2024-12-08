@@ -418,7 +418,7 @@
           "float biomeIndex = float(gIndex);",
 
           "float shift = 0.75/2048.0;",
-
+          "float uvScale = 1.0;",
           "vec2 normalSamplerP0 = vec2(terrainSampler.x +shift*0.5 , terrainSampler.y +shift*0.5);",
           "vec4 normalSampleP0 = texture2D( heightmap, normalSamplerP0);",
 
@@ -452,11 +452,11 @@
           "vec2 tileScale = 1.0/tx0tiles;",
           "float tileCount = tx0tiles.x*16.0;",
 
-          "float tileXuv = (max(0.0001, min(mod(vUv.x*elevationFactor, 1.0), 0.9999)) * tileCount)/unitScale;",
-          "float tileYuv = (max(0.0001, min(mod(vUv.y*elevationFactor, 1.0), 0.9999)) * tileCount)/unitScale;",
-          "float uvX = ((tileXuv * 1.0 - floor(tileXuv * 1.0005)*0.99995)) * 1.0/unitScale;",
-          "float uvY = ((tileYuv * 1.0 - floor(tileYuv * 1.0005)*0.99995)) * 1.0/unitScale;",
-          "float pixelShrink = 0.07;",
+          "float tileXuv = (max(0.00001, min(mod(vUv.x*elevationFactor / uvScale, uvScale), 0.9999)) * tileCount);",
+          "float tileYuv = (max(0.00001, min(mod(vUv.y*elevationFactor / uvScale, uvScale), 0.9999)) * tileCount);",
+          "float uvX = ((tileXuv / uvScale - floor(tileXuv * 1.00005 / uvScale)*0.999995)) ;",
+          "float uvY = ((tileYuv / uvScale - floor(tileYuv * 1.00005 / uvScale)*0.999995)) ;",
+          "float pixelShrink = 0.05;",
           "vec2 tileUv = vec2(pixelShrink + uvX*(1.0-pixelShrink*2.0), pixelShrink + uvY*(1.0-pixelShrink*2.0));",
           "vec2 scaledUv = tileUv*tileScale;",
 
