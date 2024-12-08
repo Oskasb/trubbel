@@ -355,8 +355,8 @@
 
           "vec4 sample = texture2D( heightmap, heightSampler);",
 
-          "vUv.x = mod((vPosition.x/outerness/256.0)+0.5, 1.0);",
-          "vUv.y = mod((vPosition.z/outerness/256.0)+0.5, 1.0);",
+          "vUv.x = mod((((vPosition.x/unitScale)+0.5)/outerness/256.0/(unitScale*1.0))+0.5, 1.0);",
+          "vUv.y = mod((((vPosition.z/unitScale)+0.5)/outerness/256.0/(unitScale*1.0))+0.5, 1.0);",
 
           "vPosition.y = -3.0 + sample.x * scale3d.y;",
           "vPosition.x += center.x -0.5*unitScale;",
