@@ -261,6 +261,7 @@ class ThreeEnvironment {
             return;
         }
         for (let key in current) {
+
             if (fraction >= 1) {
                 if (current[key].color) {
                     current[key].color[0] = target[key].color[0];
@@ -400,7 +401,10 @@ class ThreeEnvironment {
         this.currentElevation = camPos.y;
 
         if (this.currentElevation > 0) {
-            this.elevationFactor = MATH.curveCube( MATH.airDensityAtAlt(this.currentElevation*1) );
+            let params = ThreeAPI.getTerrainSystem().getTerrain().call.getTerrainParameters();
+            let fogScale = 1  + 0.1*MATH.curveSqrt(params.unitScale);
+
+            this.elevationFactor = MATH.curveCube( MATH.airDensityAtAlt(this.currentElevation*fogScale) );
         } else {
         //    this.updateUnderwater();
         //    return;

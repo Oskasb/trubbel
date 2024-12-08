@@ -199,7 +199,7 @@
           "config": {
             "instancing": {
               "vegetation": true,
-              "instances": 1000,
+              "instances": 3000,
               "attributes": ["offset", "vertexColor", "scale3d", "orientation", "sprite", "texelRowSelect", "lifecycle"],
               "cameraspace": false
             },

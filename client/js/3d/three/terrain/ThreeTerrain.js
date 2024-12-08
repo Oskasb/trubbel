@@ -256,6 +256,10 @@ function imprintGroundInAABB(aabb, imprintCallback) {
 }
 
 let constructGeometries = function(heightMapData, transform, groundConfig, sectionInfoCfg) {
+
+    let params = ThreeAPI.getTerrainSystem().getTerrain().call.getTerrainParameters();
+//    worldSize = params.tx_width * params.unitScale;
+
     let dims = heightMapData['dimensions'];
     let txWidth = dims['tx_width'];
     let groundTxWidth = dims['ground_tx_width'];
@@ -269,14 +273,14 @@ let constructGeometries = function(heightMapData, transform, groundConfig, secti
 
     let segmentScale = new Vector3();
     segmentScale.copy(terrainScale);
-    segmentScale.multiplyScalar(1/tiles);
+    segmentScale.multiplyScalar(params.unitScale/tiles);
     segmentScale.y = terrainScale.y * 0.02;
     let geometrySize = segmentScale.x
     let vertsPerSegAxis = txWidth/tiles;
     let segsPerPlaneInstanceAxis = vertsPerSegAxis-1;
 
-    let x0 = -terrainScale.x * 0.5;
-    let z0 = -terrainScale.z * 0.5;
+    let x0 = 0 // -terrainScale.x * 0.5;
+    let z0 = 0 // -terrainScale.z * 0.5;
 
     for (let i = 0; i < tiles; i++) {
         terrainGeometries[i] = [];
