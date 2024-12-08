@@ -498,6 +498,10 @@ let populateTerrainGeometries = function() {
 
 }
 
+function getTerrainParameters() {
+    return terrainBigGeometry.getTerrainParams()
+}
+
 
 class ThreeTerrain {
     constructor() {
@@ -517,7 +521,8 @@ class ThreeTerrain {
             getTerrainScale:getTerrainScale,
             clearTerrainGeometries:clearTerrainGeometries,
             populateTerrainGeometries:populateTerrainGeometries,
-            applyTerrainEdit:applyTerrainEdit
+            applyTerrainEdit:applyTerrainEdit,
+            getTerrainParameters:getTerrainParameters
         }
 
 

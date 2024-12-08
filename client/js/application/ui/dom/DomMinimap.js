@@ -48,7 +48,7 @@ function updateMinimapCenter(htmlElement, minimapDiv, statusMap, centerPos, inCo
     }
 
 
-    let trX =  calcMapBackgroundOffset(zoom, centerPos.x, worldSize)
+    let trX = calcMapBackgroundOffset(zoom, centerPos.x, worldSize)
     let trY = calcMapBackgroundOffset(zoom, centerPos.z, worldSize)
 
     let bpXs = trX+'%';
@@ -550,6 +550,11 @@ class DomMinimap {
         let update = function() {
 
             let minimapDiv = htmlElement.call.getChildElement('minimap');
+
+
+            let params = ThreeAPI.getTerrainSystem().getTerrain().call.getTerrainParameters();
+            worldSize = params.tx_width * params.unitScale;
+
             if (minimapDiv) {
 
 

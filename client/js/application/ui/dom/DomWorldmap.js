@@ -1140,6 +1140,8 @@ class DomWorldmap {
 
         let update = function() {
             let cursorPos =  ThreeAPI.getCameraCursor().getLookAroundPoint();
+            let params = ThreeAPI.getTerrainSystem().getTerrain().call.getTerrainParameters();
+            worldSize = params.tx_width * params.unitScale;
             statusMap.posX = 'x:'+MATH.decimalify(cursorPos.x, 100);
             statusMap.posZ = 'z:'+MATH.decimalify(cursorPos.z, 100);
 
@@ -1166,8 +1168,8 @@ class DomWorldmap {
                 statusMap.offsetX = MATH.decimalify( MATH.percentify(zoomOffset*MATH.decimalify(cursorPos.x, 5)+worldSize*0.5, worldSize, true), 100);;
                 statusMap.offsetY = MATH.decimalify( MATH.percentify(zoomOffset*MATH.decimalify(cursorPos.z, 5)+worldSize*0.5, worldSize, true), 100);;
 
-                let xPcnt = MATH.percentify(-cursorPos.x, worldSize, true)
-                let zPcnt = MATH.percentify(-cursorPos.z, worldSize, true)
+                let xPcnt = 50 + MATH.percentify(-cursorPos.x, worldSize, true)
+                let zPcnt = 50 + MATH.percentify(-cursorPos.z, worldSize, true)
 
                 statusMap.os_x = (statusMap.offsetX-50)*0.005*worldSize;
                 statusMap.os_z = (statusMap.offsetY-50)*0.005*worldSize;
