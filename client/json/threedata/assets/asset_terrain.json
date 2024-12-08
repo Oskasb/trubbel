@@ -32,7 +32,7 @@
                     "tx_width":2048,
                     "ground_tx_width":4096,
                     "grid_mesh":[],
-                    "mesh_segments":32,
+                    "mesh_segments":16,
                     "lod_layers": 2,
                     "min_height": -3,
                     "max_height": 97
