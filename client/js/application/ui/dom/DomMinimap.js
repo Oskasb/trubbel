@@ -26,7 +26,7 @@ let activeWorldLevel = null;
 
 function calcMapBackgroundOffset(zoom, axisCenter, worldSize) {
     let zoomOffset = 1 + (1 / zoom);
-    return MATH.percentify(zoomOffset*MATH.decimalify(axisCenter, 5)+worldSize*0.5, worldSize, true);
+    return MATH.percentify(zoomOffset*MATH.decimalify(axisCenter, 5)-0.5*worldSize/zoom, worldSize, true);
 }
 
 function calcMapMeterToDivPercent(zoom, worldSize) {

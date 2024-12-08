@@ -290,24 +290,15 @@ let getDisplacedGround = function(array1d, segments, x, z, htP, htN, dataStore) 
 };
 
 let getGroundDataAt = function(pos, array1d, unitScale, terrainSize, segments, dataStore) {
-    let htP = terrainSize;
+    let htP = segments * unitScale;
     let htN = 0;
 
-    if (pos.x < htN || pos.z < htN) {
+    if (pos.x < htN || pos.z < htN || pos.x > htP  || pos.z > htP) {
         console.log("Terrain!", pos.x, pos.z, htP, htN ,"Is Outside WORKER");
         GuiAPI.printDebugText("Is Outside Terrain at "+pos.x < htN+" "+pos.z < htN)
         return false;
-        pos.x = MATH.clamp(pos.x, htN, htP);
-        pos.z = MATH.clamp(pos.z, htN, htP);
     }
 
-    if (pos.x > htP  || pos.z > htP) {
-        console.log("Terrain!", pos.x, pos.z, htP, htN ,"Is Outside WORKER");
-        GuiAPI.printDebugText("Is Outside Terrain at "+pos.x > htP+" "+ pos.z > htP)
-        return false;
-        pos.x = MATH.clamp(pos.x, htN, htP);
-        pos.z = MATH.clamp(pos.z, htN, htP);
-    }
     return getDisplacedGround(array1d, segments, pos.x, pos.z, htP, htN, dataStore);
 }
 
