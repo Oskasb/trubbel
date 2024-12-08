@@ -409,6 +409,7 @@
 
           "if (sampledHeight < 0.01) discard;",
 
+
           "vec4 terrainMapSample = texture2D( terrainmap, terrainSampler);",
 
 
@@ -451,10 +452,10 @@
           "vec2 tileScale = 1.0/tx0tiles;",
           "float tileCount = tx0tiles.x*16.0;",
 
-          "float tileXuv = (max(0.00001, min(mod(vUv.x*elevationFactor, 1.0), 0.99999)) * tileCount) / unitScale;",
-          "float tileYuv = (max(0.00001, min(mod(vUv.y*elevationFactor, 1.0), 0.99999)) * tileCount) / unitScale;",
-          "float uvX = ((tileXuv * 1.0 - floor(tileXuv * 1.0005)*0.999995)) * 1.0;",
-          "float uvY = ((tileYuv * 1.0 - floor(tileYuv * 1.0005)*0.999995)) * 1.0;",
+          "float tileXuv = (max(0.0001, min(mod(vUv.x*elevationFactor, 1.0), 0.9999)) * tileCount)/unitScale;",
+          "float tileYuv = (max(0.0001, min(mod(vUv.y*elevationFactor, 1.0), 0.9999)) * tileCount)/unitScale;",
+          "float uvX = ((tileXuv * 1.0 - floor(tileXuv * 1.0005)*0.99995)) * 1.0/unitScale;",
+          "float uvY = ((tileYuv * 1.0 - floor(tileYuv * 1.0005)*0.99995)) * 1.0/unitScale;",
           "float pixelShrink = 0.07;",
           "vec2 tileUv = vec2(pixelShrink + uvX*(1.0-pixelShrink*2.0), pixelShrink + uvY*(1.0-pixelShrink*2.0));",
           "vec2 scaledUv = tileUv*tileScale;",
@@ -478,6 +479,7 @@
           "float scatter = (cos(scaledUv.x*313.0) + sin(scaledUv.y*313.0))*0.0015;",
 
           "vec2 tile01 = vec2(min(floor((sampleGreen+scatter) * 10.0), 7.0), natureRow);",
+          "tile01.x += biomeColumn*8.0;",
           "vec2 tile01Offset = vec2(tile01.x * tileScale.x, (tile01.y-1.0) * tileScale.y);",
 
           "vec2 tile01Uv = vec2(scaledUv + tile01Offset);",
@@ -485,7 +487,9 @@
           "vec4 natureNormal = texture2D(tx0nm, tile01Uv);",
 
           "float natureMix = min(max(-natureStep*0.25 + sampleGreen, 0.0)/natureStep*1.0, 1.0);",
+
           "vec2 tileSlopeMod = vec2(min(floor(max(sqrt(slope -0.02) +scatter*4.0, 0.01) * 10.0), 7.0), rockRow);",
+          "tileSlopeMod.x += biomeColumn*8.0;",
           "vec2 tileSlopeModOffset = vec2(tileSlopeMod.x * tileScale.x, (tileSlopeMod.y-1.0) * tileScale.y);",
 
           "vec2 tileSlopeModUv = vec2(scaledUv + tileSlopeModOffset);",
