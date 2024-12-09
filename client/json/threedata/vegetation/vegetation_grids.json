@@ -12,7 +12,7 @@
                 "elevation" : 0.1,
                 "tile_size" : 0.8,
                 "tile_range" : 5,
-                "tile_spacing" : 12,
+                "tile_spacing" : 22,
                 "max_plants":25,
                 "plants":[
                   "snow_small",

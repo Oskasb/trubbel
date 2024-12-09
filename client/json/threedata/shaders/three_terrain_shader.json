@@ -64,7 +64,7 @@
           "vec3 scalePos = position;",
 
           "float elementScale = texelRowSelect.w;",
-          "float outerness =  texelRowSelect.z;",
+          "float outerness =  elementScale;",
 
           "elevationFactor = elementScale;",
 
@@ -92,7 +92,7 @@
           "float shiftSubOne = 1.0/(txw-1.0);",
           "center.x = floor(offset.x / elevationFactor) * elevationFactor;",
           "center.y = floor(offset.z / elevationFactor) * elevationFactor;",
-          "minHeight = -3.0;",
+          "minHeight = texelRowSelect.y;",
           "maxHeight = 0.0;",
 
           "vec4 quat = orientation.xyzw;",
@@ -125,6 +125,8 @@
           "waveBig.z = waveZ2;",
           "waveBig.y = waveZ1 + waveZ2;",
           "vPosition.y = (waveSmall.y*0.06 + waveBig.y*0.07)* distInfluence;",
+
+
 
           "waveNormal.y = 1.0 + waveSmall.y*0.15*elevationInfluence + waveBig.y*0.15*elevationInfluence;",
           "waveNormal.x = (waveSmall.x*0.05 +waveZ1*0.05)*elevationInfluence* distInfluence;",
@@ -202,8 +204,12 @@
 
           "float height = sample.r;",
 
+          "float heightScale = maxHeight-minHeight;",
+
+          "float aboveWater = heightScale - maxHeight;",
+
           "float twoPi = 6.2831;",
-          "float depth = min(max(height*(80.0/(maxHeight-minHeight)), 0.0), 1.0);",
+          "float depth = min(max(height*(aboveWater/heightScale), 0.0), 1.0);",
           "if (depth > 1.2) discard;",
           "float waveX = sin(scaledVPos.y*800.0 + scaledVPos.x*100.0 + systemTime*0.15);",
           "float waveY = cos(scaledVPos.y*100.0 + scaledVPos.x*400.0+ systemTime*0.25);",
@@ -316,12 +322,16 @@
           "varying vec2 center;",
           "varying float elevationFactor;",
           "varying float unitScale;",
+          "varying float yMin;",
+          "varying float yMax;",
           "void main(){",
 
           "unitScale = texelRowSelect.x;",
 
           "float elementScale = texelRowSelect.w*1.0*unitScale;",
-          "float outerness =  texelRowSelect.z;",
+          "yMin =  texelRowSelect.y;",
+          "yMax =  texelRowSelect.z;",
+          "float scaleY = yMax-yMin;",
 
           "elevationFactor = elementScale;",
 
@@ -355,10 +365,10 @@
 
           "vec4 sample = texture2D( heightmap, heightSampler);",
 
-          "vUv.x = mod((((vPosition.x/unitScale)+0.5)/outerness/256.0/(unitScale*1.0))+0.5, 1.0);",
-          "vUv.y = mod((((vPosition.z/unitScale)+0.5)/outerness/256.0/(unitScale*1.0))+0.5, 1.0);",
+          "vUv.x = mod((((vPosition.x/unitScale)+0.5)/texelRowSelect.w/256.0/(unitScale*1.0))+0.5, 1.0);",
+          "vUv.y = mod((((vPosition.z/unitScale)+0.5)/texelRowSelect.w/256.0/(unitScale*1.0))+0.5, 1.0);",
 
-          "vPosition.y = -3.0 + sample.x * scale3d.y;",
+          "vPosition.y = yMin + sample.x * scaleY;",
           "vPosition.x += center.x -0.5*unitScale;",
           "vPosition.z += center.y -0.5*unitScale;",
 
@@ -395,19 +405,24 @@
           "varying vec2 scaledVPos;",
           "varying float elevationFactor;",
           "varying float unitScale;",
+          "varying float yMin;",
+          "varying float yMax;",
           "void main(){",
 
 
           "float smooth = 0.7;",
           "float rough = 0.9;",
           "float metal = 0.7;",
+          "float scaleY = yMax-yMin;",
           "vec2 terrainSampler = scaledVPos;",
           "terrainSampler.x -= 1.0/4096.0;",
 
           "vec4 heightMapSample = texture2D( heightmap, terrainSampler);",
           "float sampledHeight = heightMapSample.r;",
 
-          "if (sampledHeight < 0.01) discard;",
+          "float waterlevel = scaleY - yMax ;",
+
+          "if (sampledHeight*scaleY < (waterlevel-2.0 - unitScale * 1.0)) discard;",
 
 
           "vec4 terrainMapSample = texture2D( terrainmap, terrainSampler);",

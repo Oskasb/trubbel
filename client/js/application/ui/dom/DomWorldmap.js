@@ -750,11 +750,18 @@ function positionLineDivs(mapDiv, cursorPos, lineSpacing, mapWidth, mapHeight, o
 
 }
 
-function updateGridLines(mapDiv, cursorPos, lineSpacing, mapWidth, mapHeight, offsetX, offsetY, zoom) {
-    if (zoom > 10) {
+function updateGridLines(mapDiv, cursorPos, lineSpacing, mapWidth, mapHeight, offsetX, offsetY, zoom, unitScale) {
+    let mapScale = zoom
+    if (mapScale > 10) {
         lineSpacing*=0.1;
-        if (zoom > 100) {
+        if (mapScale > 100) {
             lineSpacing*=0.1;
+            if (mapScale > 1000) {
+                lineSpacing*=0.1;
+                if (mapScale > 10000) {
+                    lineSpacing*=0.1;
+                }
+            }
         }
     }
     let lineCount = Math.ceil(mapWidth / lineSpacing) +1;
@@ -816,7 +823,7 @@ class DomWorldmap {
         let posDiv = null;
         let cameraDiv = null;
         let teleportDiv = null;
-        let lineSpacing = 100;
+        let lineSpacing = 1000;
 
         let offsetXDiv = null;
         let offsetZDiv = null;
@@ -1182,7 +1189,7 @@ class DomWorldmap {
             //    mapImageDiv.style.left = xPcnt+"%";
             //    mapImageDiv.style.bottom = zPcnt+"%";  // statusMap.offsetX+'%';
 
-                updateGridLines(mapDiv, cursorPos, lineSpacing, mapWidth, mapHeight, statusMap.offsetX, statusMap.offsetY, zoom)
+                updateGridLines(mapDiv, cursorPos, lineSpacing, mapWidth, mapHeight, statusMap.offsetX, statusMap.offsetY, zoom, params.unitScale)
             //    DomUtils.setElementClass()
 
 

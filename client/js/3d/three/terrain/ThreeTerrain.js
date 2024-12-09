@@ -266,15 +266,19 @@ let constructGeometries = function(heightMapData, transform, groundConfig, secti
     let mesh_segments = dims['mesh_segments'];
 //let lodTiles = dims['lod_tiles'];
     let tiles = (txWidth / (mesh_segments+1));
+    let groundTotalWidth = txWidth*params.unitScale
  //   console.log("Constructs HM Geos", gridMeshAssetId, txWidth, mesh_segments, tiles);
 
     MATH.vec3FromArray(terrainOrigin, transform['pos']);
+    terrainOrigin.y = params.yMin;
     MATH.vec3FromArray(terrainScale, transform['scale']);
+
+    terrainScale.y = params.yMax - params.yMin;
 
     let segmentScale = new Vector3();
     segmentScale.copy(terrainScale);
     segmentScale.multiplyScalar(params.unitScale/tiles);
-    segmentScale.y = terrainScale.y * 0.02;
+    segmentScale.y = params.yMax - params.yMin;
     let geometrySize = segmentScale.x
     let vertsPerSegAxis = txWidth/tiles;
     let segsPerPlaneInstanceAxis = vertsPerSegAxis-1;

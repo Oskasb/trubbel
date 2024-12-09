@@ -242,7 +242,7 @@ let getHeightAt = function(pos, array1d, unitScale, terrainSize, segments, norma
     let htN = 0;
 
     if (x < htN || z < htN || x > htP  || z > htP) {
-        console.log("Terrain HEIGHT", pos.x, pos.z, htP, htN ,"Is Outside");
+    //    console.log("Terrain HEIGHT", pos.x, pos.z, htP, htN ,"Is Outside");
         if (normalStore) {
             normalStore.set(0, 1, 0)
         }

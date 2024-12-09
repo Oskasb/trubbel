@@ -32,10 +32,10 @@
                     "tx_width":2048,
                     "ground_tx_width":4096,
                     "grid_mesh":[],
-                    "mesh_segments":16,
+                    "mesh_segments":8,
                     "lod_layers": 2,
                     "min_height": -3,
-                    "max_height": 97
+                    "max_height": 15
                   }
                 },
                 "textures": [

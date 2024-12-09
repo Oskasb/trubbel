@@ -28,6 +28,8 @@ let height = null;
 let terrainWidth = null;
 let terrainHeight = null;
 let terrainUnitSize = null;
+let yMin = null;
+let yMax = null;
 let maxLodLevel = 6;
 let terrainContext = null;
 let heightmapContext = null;
@@ -174,7 +176,7 @@ function setupAmmoTerrainBody(canvasData, config) {
 
     let w = (config.dimensions['tx_width']-1) * terrainUnitSize;
 
-    terrainAmmoBody = AmmoAPI.buildPhysicalTerrain(rgbaR, w, w*0.5, w*0.5, -3, 97);
+    terrainAmmoBody = AmmoAPI.buildPhysicalTerrain(rgbaR, w, w*0.5, w*0.5, terrainParams.yMin, terrainParams.yMax);
     getPhysicalWorld().registerTerrainBody(terrainAmmoBody)
 
 }
@@ -214,7 +216,7 @@ let attachSection = function(lodScale, x, z, index) {
 
 let positionSectionInstance = function(instance, lodScale, x, y, z) {
     instance.getSpatial().setPosXYZ(x, y, z);
-    instance.setAttributev4('texelRowSelect',{x:terrainUnitSize, y:1, z:lodScale, w:lodScale})
+    instance.setAttributev4('texelRowSelect',{x:terrainParams.unitScale, y:terrainParams.yMin, z:terrainParams.yMax, w:lodScale})
 }
 
 let detachSection = function(index) {
@@ -656,14 +658,25 @@ class TerrainBigGeometry {
 
         terrainParams.tx_width = txWidth;
         terrainParams.groundTxWidth = groundTxWidth;
-        terrainParams.minHeight = dims.min_height;
-        terrainParams.maxHeight = dims.max_height;
+
+
 
         let worldLevel = GameAPI.getPlayer().getStatus(ENUMS.PlayerStatus.PLAYER_WORLD_LEVEL)
         let levelCfg = GameAPI.gameMain.getWorldLevelConfig(""+worldLevel)
         console.log("WORLD LEVEL CONFIG >>> ", levelCfg);
         terrainUnitSize = levelCfg.unit || 1;
+
+        terrainParams.yMin = levelCfg.y_min || 0;
+        terrainParams.yMax = levelCfg.y_max || 100;
         terrainParams.unitScale = terrainUnitSize;
+
+        dims.min_height = terrainParams.yMin;
+        dims.max_height = terrainParams.yMax;
+
+        terrainParams.minHeight = dims.min_height;
+        terrainParams.maxHeight = dims.max_height;
+
+
     //    terrainParams.tiles = tiles;
 
         let updateBigGeo = this.call.updateBigGeo;

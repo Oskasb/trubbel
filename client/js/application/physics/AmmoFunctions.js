@@ -602,12 +602,14 @@ function createTerrainShape(data, sideSize, terrainMaxHeight, terrainMinHeight, 
     let terrainDepthExtents = sideSize;
     let terrainWidth = Math.sqrt(data.length);
     let terrainDepth = terrainWidth;
+    let terrainHeightDiff = terrainMaxHeight - terrainMinHeight;
+    let heightScale = terrainHeightDiff / 100
     let terrainHalfWidth = terrainWidth / 2;
     let terrainHalfDepth = terrainDepth / 2;
 
     if (!ammoHeightData) {
         ammoHeightData = Ammo._malloc(4 * terrainWidth * terrainDepth);
-        let heightScale = 1;
+     //   let heightScale = 1;
         // Up axis = 0 for X, 1 for Y, 2 for Z. Normally 1 = Y is used.
         let upAxis = 1;
         // hdt, height data type. "PHY_FLOAT" is used. Possible values are "PHY_FLOAT", "PHY_UCHAR", "PHY_SHORT"
@@ -617,13 +619,17 @@ function createTerrainShape(data, sideSize, terrainMaxHeight, terrainMinHeight, 
         // Creates height data buffer in Ammo heap
         //    }
         // Creates the heightfield physics shape
+
+        let scaleX = terrainWidthExtents / ( terrainWidth - 1 );
+        let scaleZ = terrainDepthExtents / ( terrainDepth - 1 );
+
         heightFieldShape = new Ammo.btHeightfieldTerrainShape(
             terrainWidth,
             terrainDepth,
             ammoHeightData,
-            heightScale,
-            0,
-            terrainMaxHeight - terrainMinHeight,
+            1,
+            terrainMinHeight,
+            terrainMaxHeight,
             upAxis,
             hdt,
             flipQuadEdges
@@ -631,9 +637,8 @@ function createTerrainShape(data, sideSize, terrainMaxHeight, terrainMinHeight, 
 
 //    console.log(heightFieldShape)
         // Set horizontal scale
-        let scaleX = terrainWidthExtents / ( terrainWidth - 1 );
-        let scaleZ = terrainDepthExtents / ( terrainDepth - 1 );
-        heightFieldShape.setLocalScaling(new Ammo.btVector3(scaleX, heightScale, scaleZ));
+
+        heightFieldShape.setLocalScaling(new Ammo.btVector3(scaleX,  1, scaleZ));
         heightFieldShape.setMargin(margin);
 
     }
@@ -644,7 +649,7 @@ function createTerrainShape(data, sideSize, terrainMaxHeight, terrainMinHeight, 
     //    for (let j = 0; j < terrainWidth; j++) {
     for (let i = 0; i < data.length; i++) {
         // write 32-bit float data to memory
-        Ammo.HEAPF32[ammoHeightData + p2 >> 2] = data[i];
+        Ammo.HEAPF32[ammoHeightData + p2 >> 2] = data[i] * heightScale * (256/255);
         p++;
         // 4 bytes/float
         p2 += 4;
@@ -958,28 +963,27 @@ class AmmoFunctions {
 
    //     console.log("createPhysicalTerrain", totalSize, posx, posz, minHeight, maxHeight);
 
-        let margin = 1;
 
-        let terrainMaxHeight = maxHeight;
-        let terrainMinHeight = minHeight;
 
         let heightDiff = maxHeight-minHeight;
+        let heightScale = heightDiff/100
+        let margin = 0.01 // 2 / heightScale;
 
         let restitution =  0.4;
         let damping     =  0.7;
         let friction    =  45.0;
 
-        //    console.log("Ground Matrix: ", data.length)
+            console.log("Ground minY maxY: ", minHeight, maxHeight)
 
-        let groundShape = createTerrainShape( data, totalSize, terrainMaxHeight, terrainMinHeight, margin );
+        let groundShape = createTerrainShape( data, totalSize, maxHeight, minHeight, margin );
         shapes.push(groundShape);
         let groundTransform = new Ammo.btTransform();
         groundTransform.setIdentity();
         // Shifts the terrain, since bullet re-centers it on its bounding box.
-        let posY =  -(margin*0.0) + minHeight + (heightDiff) * 0.5 -0.3;
+        let posY = minHeight*2 + ((heightDiff-(heightScale*0.8))* 0.5);
         groundTransform.setOrigin( new Ammo.btVector3(posx, posY,posz) );
-    //    console.log(groundTransform)
-    //    groundTransform.setScale( new Ammo.btVector3(posx, posY,posz) );
+        console.log("groundTransform",groundTransform)
+
         let groundMass = 0;
         let groundLocalInertia = new Ammo.btVector3( 0, 0, 0 );
         let groundMotionState = new Ammo.btDefaultMotionState( groundTransform );
