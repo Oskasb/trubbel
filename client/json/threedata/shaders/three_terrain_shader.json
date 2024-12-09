@@ -202,15 +202,16 @@
 
           "vec4 sample = texture2D( heightmap, scaledVPos );",
 
-          "float height = sample.r;",
+
 
           "float heightScale = maxHeight-minHeight;",
+          "float height = sample.r*heightScale;",
 
           "float aboveWater = heightScale - maxHeight;",
 
           "float twoPi = 6.2831;",
           "float depth = min(max(height*(aboveWater/heightScale), 0.0), 1.0);",
-          "if (depth > 1.2) discard;",
+          "if (depth -0.8 > 0.0) discard;",
           "float waveX = sin(scaledVPos.y*800.0 + scaledVPos.x*100.0 + systemTime*0.15);",
           "float waveY = cos(scaledVPos.y*100.0 + scaledVPos.x*400.0+ systemTime*0.25);",
 
@@ -553,15 +554,15 @@
           "vec3 litDiffuse = diffuseColor * sunDir.rgb;",
           "vec3 ambientColor = ambientLightColor * diffuseColor;",
           "vec3 ambientDiffuse = ambientColor * (0.65-(0.65*slope));",
-          "vec3 combinedEnvLight = (litDiffuse+ambientDiffuse-angle*1.0) * (1.0 / (1.0 + angle*angle*0.2*fogDepth*0.31 * (slope+0.5))) + (ambientLightColor*(angle-slope*0.01)*2.0*fogDepth*0.0005);",
+          "vec3 combinedEnvLight = (litDiffuse+ambientDiffuse-angle*1.0) * (1.0 / (1.0 + angle*angle*0.2*fogDepth*0.2 * (slope+0.25))) + (ambientLightColor*(angle-slope*0.01)*2.0*fogDepth*0.0005);",
 
           "vec3 specularDiffuseLight = litDiffuse * specularIntensity * colorFactor * 1.2;",
 
           "float shadowing = 1.0 - heightMapSample.b*0.45;",
-          "vec4 lightColor = vec4((combinedEnvLight+specularDiffuseLight.rgb + sunLightColor*angle*(0.25+fogDepth*0.001*angle)) * ((1.0) - (slope*0.25)), 1.0) * shadowing;",
+          "vec4 lightColor = vec4((combinedEnvLight+specularDiffuseLight.rgb + sunLightColor*angle*(0.3+fogDepth*0.0002*angle)) * ((1.0) - (slope*0.25)), 1.0) * shadowing;",
           "intensity = max( 0.01 + dot(txNmBase.rgb, sunLightDirection ) * 0.99, 0.0) * shadowing;",
           "gl_FragColor = (shadowing * lightColor * (intensity*0.25 + 0.5) + txColor * lightColor*intensity*(2.0)) * shadowing;",
-          "float fogFactor = min(min((fogDensity*0.8+angle*0.001), 1.0) * fogDepth, 1.0);",
+          "float fogFactor = min(min((fogDensity*0.8+angle*0.0002), 1.0) * fogDepth, 1.0);",
           "gl_FragColor.rgb = mix(gl_FragColor.rgb, fogColor,  fogFactor );",
           "gl_FragColor.rgb = gl_FragColor.rgb;",
           "}",

@@ -407,7 +407,7 @@ let updateBigGeo = function(tpf) {
             tempPoint.set(posX + scaleFactor*gridOffsets[i][0]*lodScale, 0.0, posZ + scaleFactor*gridOffsets[i][1]*lodScale)
         //    let visible = ThreeAPI.testPosIsVisible(tempPoint);
 
-            let visible = aaBoxTestVisibility(tempPoint, scaleFactor*lodScale, 100, scaleFactor*lodScale)
+            let visible = aaBoxTestVisibility(tempPoint, scaleFactor*lodScale, terrainParams.yMax , scaleFactor*lodScale)
             let borrowedBox = borrowBox();
 
 

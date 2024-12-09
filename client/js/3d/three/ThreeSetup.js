@@ -107,7 +107,7 @@ class ThreeSetup {
         // Hack the context attributes to prevent canvas alpha
         let pxScale = getSetting(ENUMS.Settings.RENDER_SCALE);
 
-           let renderer = new THREE.WebGLRenderer( { antialias:antialias, alpha:false, devicePixelRatio: pxRatio, logarithmicDepthBuffer: false, sortObjects: false });
+           let renderer = new THREE.WebGLRenderer( { antialias:antialias, alpha:false, devicePixelRatio: pxRatio, logarithmicDepthBuffer: false, reverseDepthBuffer: true, sortObjects: false });
         //    let renderer = new THREE.WebGLRenderer();
             let gl = renderer.getContext();
             gl.getContextAttributes().alpha = false;
