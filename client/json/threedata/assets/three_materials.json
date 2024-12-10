@@ -29,6 +29,33 @@
           }
         },
         {
+          "id":"material_standard_decals_f14",
+          "config":{
+            "settings": "mat_settings_standard_opaque",
+            "textures":[
+              {"key":"map"           , "id":"tx_tomcat_decals"   } ,
+              {"key":"metalnessMap"  , "id":"tx_glass_surface"   } ,
+              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"roughnessMap"  , "id":"tx_glass_surface"   } ,
+              {"key":"normalMap"     , "id":"tx_canopy_normals"   }
+            ]
+          }
+        },
+        {
+          "id":"material_standard_lights_f14",
+          "config":{
+            "settings": "mat_settings_standard_opaque",
+            "textures":[
+              {"key":"map"           , "id":"tx_tomcat_lights_diffuse"   } ,
+              {"key":"metalnessMap"  , "id":"tx_glass_surface"   } ,
+              {"key":"emissiveMap"   , "id":"tx_tomcat_lights_emit"   } ,
+              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"roughnessMap"  , "id":"tx_glass_surface"   } ,
+              {"key":"normalMap"     , "id":"tx_canopy_normals"   }
+            ]
+          }
+        },
+        {
           "id":"material_opaque",
           "config":{
             "settings": "mat_settings_phong_opaque",
@@ -596,9 +623,9 @@
           "config":{
             "settings": "mat_settings_glass",
             "textures":[
-              {"key":"map"           , "id":"glass_surface"   } ,
+              {"key":"map"           , "id":"tx_glass_surface"   } ,
               {"key":"envMap"        , "id":"ref_sphere"      } ,
-              {"key":"normalMap"     , "id":"canopy_normals"  }
+              {"key":"normalMap"     , "id":"tx_canopy_normals"  }
             ]
           }
         }
