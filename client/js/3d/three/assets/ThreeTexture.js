@@ -101,9 +101,9 @@ class ThreeTexture {
                 _this.texture.canvas = canvas;
                 _this.texture.ctx = canvas.getContext('2d')
                 _this.texture.ctx.drawImage( asset.bitmap, 0, 0, canvas.width, canvas.height );
-                _this.texture.flipY = true;
+                _this.texture.flipY = false;
             //    _this.texture.ctx.save();
-                _this.texture.combine = THREE.AddOperation;
+                _this.texture.combine = THREE.MixOperation;
 
                 _this.texture.mapping = THREE.EquirectangularReflectionMapping;
                 ThreeAPI.getScene().environemt = _this.texture;

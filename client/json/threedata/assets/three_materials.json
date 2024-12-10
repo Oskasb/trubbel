@@ -9,7 +9,7 @@
             "textures":[
               {"key":"map"           , "id":"atlas_2k_diff"   } ,
               {"key":"metalnessMap"  , "id":"atlas_2k_metalness"   } ,
-              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"envMap"        , "id":"ref_sphere_2"      } ,
               {"key":"roughnessMap"  , "id":"atlas_2k_roughness"   } ,
               {"key":"normalMap"     , "id":"atlas_2k_norm"   }
             ]
@@ -22,8 +22,20 @@
             "textures":[
               {"key":"map"           , "id":"tx_plane_atlas"   } ,
               {"key":"metalnessMap"  , "id":"tx_plane_atlas_metalness"   } ,
-              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"envMap"        , "id":"ref_sphere_2"      } ,
               {"key":"roughnessMap"  , "id":"tx_plane_atlas_roughness"   } ,
+              {"key":"normalMap"     , "id":"tx_plane_atlas_normal"   }
+            ]
+          }
+        },
+        {
+          "id":"material_phong_plane",
+          "config":{
+            "settings": "mat_settings_phong_opaque",
+            "textures":[
+              {"key":"map"           , "id":"tx_plane_atlas"   },
+              {"key":"envMap"        , "id":"ref_sphere_2"      } ,
+              {"key":"specularMap"   , "id":"tx_plane_atlas_metalness"   },
               {"key":"normalMap"     , "id":"tx_plane_atlas_normal"   }
             ]
           }
@@ -31,12 +43,10 @@
         {
           "id":"material_standard_decals_f14",
           "config":{
-            "settings": "mat_settings_standard_opaque",
+            "settings": "mat_settings_standard_decals",
             "textures":[
               {"key":"map"           , "id":"tx_tomcat_decals"   } ,
-              {"key":"metalnessMap"  , "id":"tx_glass_surface"   } ,
-              {"key":"envMap"        , "id":"ref_sphere"      } ,
-              {"key":"roughnessMap"  , "id":"tx_glass_surface"   } ,
+              {"key":"envMap"        , "id":"ref_sphere_2"      } ,
               {"key":"normalMap"     , "id":"tx_canopy_normals"   }
             ]
           }
@@ -49,7 +59,7 @@
               {"key":"map"           , "id":"tx_tomcat_lights_diffuse"   } ,
               {"key":"metalnessMap"  , "id":"tx_glass_surface"   } ,
               {"key":"emissiveMap"   , "id":"tx_tomcat_lights_emit"   } ,
-              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"envMap"        , "id":"ref_sphere_2"      } ,
               {"key":"roughnessMap"  , "id":"tx_glass_surface"   } ,
               {"key":"normalMap"     , "id":"tx_canopy_normals"   }
             ]
@@ -624,7 +634,7 @@
             "settings": "mat_settings_glass",
             "textures":[
               {"key":"map"           , "id":"tx_glass_surface"   } ,
-              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"envMap"        , "id":"ref_sphere_2"      } ,
               {"key":"normalMap"     , "id":"tx_canopy_normals"  }
             ]
           }

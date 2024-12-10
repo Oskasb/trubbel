@@ -105,6 +105,21 @@
           }
         },
         {
+          "id": "tx_settings_env_2"   ,
+          "config":{
+            "settings" : {
+              "retain_canvas": false,
+              "combine": "AddOperation",
+              "wrapS": "RepeatWrapping",
+              "wrapT": "RepeatWrapping",
+              "generateMipmaps": false,
+              "magFilter": "LinearFilter",
+              "minFilter": "LinearFilter",
+              "flipY": false
+            }
+          }
+        },
+        {
           "id": "tx_settings_environment"   ,
           "config":{
             "settings" : {
