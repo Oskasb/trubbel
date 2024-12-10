@@ -222,6 +222,50 @@ class DomEditModel {
             if (selectedTool === "ADD") {
                 activeTool = poolFetch('DomEditAdd');
 
+                let addModelInstance = function(instance) {
+                    //    console.log("Load model instance: ", instance);
+                    instance.getSpatial().obj3d.copy(ThreeAPI.getCameraCursor().getCursorObj3d())
+                    instance.getSpatial().obj3d.position.y +=2;
+                    instance.getSpatial().obj3d.scale.multiplyScalar(1)
+                    instance.getSpatial().stickToObj3D(instance.getSpatial().obj3d)
+                    ThreeAPI.addToScene(instance.obj3d)
+                    console.log("Load model instance: ", instance, ThreeAPI.getScene());
+
+                    let addChildModel = function(child) {
+                        instance.attachInstancedModel(child);
+
+                        console.log("Load child model: ", child, ThreeAPI.getScene());
+                        /*
+                        let rigObj3d = instance.obj3d.children[0];
+                        let skinnedMeshes = [];
+                        child.obj3d.traverse(function (node) {
+                            if (node) {
+                                if (node.isSkinnedMesh) {
+                                    skinnedMeshes.push(node);
+                                    console.log("Child SkinnedMesh:", node);
+
+                                    //    skinnedMeshes[node.name] = node;
+                                }
+                            }
+                        });
+
+                        while (skinnedMeshes.length) {
+                            rigObj3d.add(skinnedMeshes.pop());
+                        }
+                        */
+                    }
+
+
+                    client.dynamicMain.requestAssetInstance("f14_surfaces", addChildModel)
+                    client.dynamicMain.requestAssetInstance("f14_cockpit", addChildModel)
+                    client.dynamicMain.requestAssetInstance("f14_decals", addChildModel)
+                    client.dynamicMain.requestAssetInstance("f14_glass", addChildModel)
+                    client.dynamicMain.requestAssetInstance("f14_instrument_glass", addChildModel)
+                    client.dynamicMain.requestAssetInstance("f14_lights", addChildModel)
+
+                }
+                client.dynamicMain.requestAssetInstance("f14_fuselage_rig", addModelInstance)
+
 
                 let parent = new WorldModel()
                 parent.getPos().copy(ThreeAPI.getCameraCursor().getLookAroundPoint())

@@ -29,7 +29,7 @@ let actorQuat = null;
 let navLookAt = new Vector3();
 let navLookFrom = new Vector3();
 
-let lookAroundPoint = new Vector3(500, 0, 500)
+let lookAroundPoint = new Vector3(677, 0, 1139)
 
 let posMod = new Vector3();
 let lookAtMod = new Vector3();

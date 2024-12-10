@@ -115,7 +115,9 @@ class Plant {
         //    evt.dispatch(ENUMS.Event.DEBUG_DRAW_LINE, {from:ThreeAPI.getCameraCursor().getPos(), to:this.obj3d.position, color:'GREEN'});
             this.callbacks.setInstance(instance)
             this.applyInstanceAttributes(instance, nearness);
+            this.obj3d.scale.set(100, 100, 100)
             instance.spatial.stickToObj3D(this.obj3d);
+
         }.bind(this)
 
         client.dynamicMain.requestAssetInstance(this.poolKey, addPlant)

@@ -99,6 +99,7 @@ class TerrainElementModel {
         let addLodInstance = function(instance, groundData) {
             let palette = poolFetch('VisualModelPalette')
             palette.initPalette()
+            instance.getSpatial().setBaseSize(100)
             palette.applyPaletteSelection(getNatureByGroundData(groundData), instance);
             poolReturn(palette);
             modelCount++

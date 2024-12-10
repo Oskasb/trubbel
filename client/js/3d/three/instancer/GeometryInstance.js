@@ -7,7 +7,7 @@ class GeometryInstance {
         this.id = id;
         this.index = index;
         this.instancingBuffers = insBuffers;
-        this.baseScale = 100;
+        this.baseScale = 1;
         this.obj3d = new THREE.Object3D();
         this.color = new THREE.Color();
         this.alpha = 1;

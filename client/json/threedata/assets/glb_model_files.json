@@ -9,6 +9,16 @@
         {"id": "file_svigg",             "config": { "url": "./client/assets/models/vehicles/svigg"                                 }},
         {"id": "file_oomba",             "config": { "url": "./client/assets/models/vehicles/oomba"                                 }},
         {"id": "file_f14_fuselage_rig",  "config": { "url": "./client/assets/models/vehicles/f14_fuselage_rig"                        }},
+        {"id": "file_f14_surfaces",      "config": { "url": "./client/assets/models/vehicles/f14_surfaces"                            }},
+
+        {"id": "file_f14_cockpit",      "config": { "url": "./client/assets/models/vehicles/f14_cockpit"                            }},
+        {"id": "file_f14_decals",      "config": { "url": "./client/assets/models/vehicles/f14_decals"                            }},
+        {"id": "file_f14_glass",      "config": { "url": "./client/assets/models/vehicles/f14_glass"                            }},
+        {"id": "file_f14_instrument_glass",      "config": { "url": "./client/assets/models/vehicles/f14_instrument_glass"                            }},
+        {"id": "file_f14_lights",      "config": { "url": "./client/assets/models/vehicles/f14_lights"                            }},
+
+
+
 
         {"id": "file_j35draken",          "config": { "url": "./client/assets/models/vehicles/draken"                                 }},
         {"id": "file_pilot_bind",         "config": { "url": "./client/assets/models/characters/pilot/pilot_bind"                     }},

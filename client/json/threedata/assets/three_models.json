@@ -10,8 +10,16 @@
         {"id": "asset_jetpack",     "config":{"model": "file_jetpack",       "material": "mat_instancing_basic", "settings": "model_settings_items" }},
         {"id": "asset_oomba",       "config":{"model": "file_oomba",       "material": "mat_instancing_basic", "settings": "model_settings_items" }},
         {"id": "asset_svigg",       "config":{"model": "file_svigg",       "material": "mat_instancing_basic", "settings": "model_settings_items" }},
-        {"id": "asset_f14_fuselage_rig",  "config":{"model": "file_f14_fuselage_rig",    "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
-        
+        {"id": "f14_fuselage_rig",  "config":{"model": "file_f14_fuselage_rig", "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "f14_surfaces",      "config":{"model": "file_f14_surfaces",     "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "f14_cockpit",       "config":{"model": "file_f14_cockpit", "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "f14_decals",        "config":{"model": "file_f14_decals",     "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "f14_glass",         "config":{"model": "file_f14_glass", "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "f14_instrument_glass",      "config":{"model": "file_f14_instrument_glass",     "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "f14_lights",        "config":{"model": "file_f14_lights", "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
+
+
+
 
         {"id": "asset_j35draken",       "config":{"model": "file_j35draken",    "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
         {"id": "animated_fighter_male", "config":{"model": "file_fighter_bind", "rig": "rig_fighter",   "material": "material_opaque", "settings": "model_settings_default" }},
