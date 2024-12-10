@@ -16,6 +16,19 @@
           }
         },
         {
+          "id":"material_standard_opaque_plane",
+          "config":{
+            "settings": "mat_settings_standard_opaque",
+            "textures":[
+              {"key":"map"           , "id":"tx_plane_atlas"   } ,
+              {"key":"metalnessMap"  , "id":"tx_plane_atlas_metalness"   } ,
+              {"key":"envMap"        , "id":"ref_sphere"      } ,
+              {"key":"roughnessMap"  , "id":"tx_plane_atlas_roughness"   } ,
+              {"key":"normalMap"     , "id":"tx_plane_atlas_normal"   }
+            ]
+          }
+        },
+        {
           "id":"material_opaque",
           "config":{
             "settings": "mat_settings_phong_opaque",

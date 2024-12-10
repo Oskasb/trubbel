@@ -2,6 +2,19 @@
   {
     "ASSETS": {
       "TEXTURES":[
+
+        {"id": "tx_tomcat_decals"      ,  "config": {  "img" : "img_tomcat_decals"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_tomcat_lights_diffuse"      ,  "config": {  "img" : "img_tomcat_lights_diffuse"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_tomcat_lights_emit"      ,  "config": {  "img" : "img_tomcat_lights_emit"       , "settings": "tx_settings_model_normal"    }} ,
+
+        {"id": "tx_plane_atlas"      ,  "config": {  "img" : "img_plane_atlas"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_plane_atlas_metalness"      ,  "config": {  "img" : "img_plane_atlas_metalness"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_plane_atlas_normal"      ,  "config": {  "img" : "img_plane_atlas_normal"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_plane_atlas_roughness"      ,  "config": {  "img" : "img_plane_atlas_roughness"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_glass_surface"      ,  "config": {  "img" : "img_glass_surface"       , "settings": "tx_settings_model_normal"    }} ,
+        {"id": "tx_canopy_normals"      ,  "config": {  "img" : "img_canopy_normals"       , "settings": "tx_settings_model_normal"    }} ,
+
+
         {"id": "atlas_2k_diff"      ,  "config": {  "img" : "img_atlas_2k_diff"       , "settings": "tx_settings_model_normal"    }} ,
         {"id": "atlas_2k_mat_eps"   ,  "config": {  "img" : "img_atlas_2k_mat_eps"    , "settings": "tx_settings_model_normal"    }} ,
         {"id": "atlas_2k_mat_erm"   ,  "config": {  "img" : "img_atlas_2k_mat_erm"    , "settings": "tx_settings_model_normal"    }} ,
