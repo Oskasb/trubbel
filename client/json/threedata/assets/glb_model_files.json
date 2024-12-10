@@ -8,7 +8,7 @@
         {"id": "file_rowboat",             "config": { "url": "./client/assets/models/vehicles/rowboat"                                 }},
         {"id": "file_svigg",             "config": { "url": "./client/assets/models/vehicles/svigg"                                 }},
         {"id": "file_oomba",             "config": { "url": "./client/assets/models/vehicles/oomba"                                 }},
-        {"id": "file_f14",               "config": { "url": "./client/assets/models/vehicles/f14"                                   }},
+        {"id": "file_f14_fuselage_rig",  "config": { "url": "./client/assets/models/vehicles/f14_fuselage_rig"                        }},
 
         {"id": "file_j35draken",          "config": { "url": "./client/assets/models/vehicles/draken"                                 }},
         {"id": "file_pilot_bind",         "config": { "url": "./client/assets/models/characters/pilot/pilot_bind"                     }},

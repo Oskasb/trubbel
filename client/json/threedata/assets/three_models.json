@@ -10,7 +10,8 @@
         {"id": "asset_jetpack",     "config":{"model": "file_jetpack",       "material": "mat_instancing_basic", "settings": "model_settings_items" }},
         {"id": "asset_oomba",       "config":{"model": "file_oomba",       "material": "mat_instancing_basic", "settings": "model_settings_items" }},
         {"id": "asset_svigg",       "config":{"model": "file_svigg",       "material": "mat_instancing_basic", "settings": "model_settings_items" }},
-        {"id": "asset_f14",         "config":{"model": "file_jf14",             "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
+        {"id": "asset_f14_fuselage_rig",  "config":{"model": "file_f14_fuselage_rig",    "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
+        
 
         {"id": "asset_j35draken",       "config":{"model": "file_j35draken",    "rig": "rig_j35draken", "material": "material_opaque", "settings": "model_settings_default" }},
         {"id": "animated_fighter_male", "config":{"model": "file_fighter_bind", "rig": "rig_fighter",   "material": "material_opaque", "settings": "model_settings_default" }},
