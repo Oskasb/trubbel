@@ -1,4 +1,4 @@
-import { clamp } from './MathUtils.js';
+import * as MathUtils from './MathUtils.js';
 import { Quaternion } from './Quaternion.js';
 
 class Vector3 {
@@ -251,20 +251,21 @@ class Vector3 {
 
 	applyQuaternion( q ) {
 
-		// quaternion q is assumed to have unit length
-
-		const vx = this.x, vy = this.y, vz = this.z;
+		const x = this.x, y = this.y, z = this.z;
 		const qx = q.x, qy = q.y, qz = q.z, qw = q.w;
 
-		// t = 2 * cross( q.xyz, v );
-		const tx = 2 * ( qy * vz - qz * vy );
-		const ty = 2 * ( qz * vx - qx * vz );
-		const tz = 2 * ( qx * vy - qy * vx );
+		// calculate quat * vector
 
-		// v + q.w * t + cross( q.xyz, t );
-		this.x = vx + qw * tx + qy * tz - qz * ty;
-		this.y = vy + qw * ty + qz * tx - qx * tz;
-		this.z = vz + qw * tz + qx * ty - qy * tx;
+		const ix = qw * x + qy * z - qz * y;
+		const iy = qw * y + qz * x - qx * z;
+		const iz = qw * z + qx * y - qy * x;
+		const iw = - qx * x - qy * y - qz * z;
+
+		// calculate result * inverse quat
+
+		this.x = ix * qw + iw * - qx + iy * - qz - iz * - qy;
+		this.y = iy * qw + iw * - qy + iz * - qx - ix * - qz;
+		this.z = iz * qw + iw * - qz + ix * - qy - iy * - qx;
 
 		return this;
 
@@ -338,9 +339,9 @@ class Vector3 {
 
 		// assumes min < max, componentwise
 
-		this.x = clamp( this.x, min.x, max.x );
-		this.y = clamp( this.y, min.y, max.y );
-		this.z = clamp( this.z, min.z, max.z );
+		this.x = Math.max( min.x, Math.min( max.x, this.x ) );
+		this.y = Math.max( min.y, Math.min( max.y, this.y ) );
+		this.z = Math.max( min.z, Math.min( max.z, this.z ) );
 
 		return this;
 
@@ -348,9 +349,9 @@ class Vector3 {
 
 	clampScalar( minVal, maxVal ) {
 
-		this.x = clamp( this.x, minVal, maxVal );
-		this.y = clamp( this.y, minVal, maxVal );
-		this.z = clamp( this.z, minVal, maxVal );
+		this.x = Math.max( minVal, Math.min( maxVal, this.x ) );
+		this.y = Math.max( minVal, Math.min( maxVal, this.y ) );
+		this.z = Math.max( minVal, Math.min( maxVal, this.z ) );
 
 		return this;
 
@@ -360,7 +361,7 @@ class Vector3 {
 
 		const length = this.length();
 
-		return this.divideScalar( length || 1 ).multiplyScalar( clamp( length, min, max ) );
+		return this.divideScalar( length || 1 ).multiplyScalar( Math.max( min, Math.min( max, length ) ) );
 
 	}
 
@@ -530,7 +531,7 @@ class Vector3 {
 
 		// clamp, to handle numerical problems
 
-		return Math.acos( clamp( theta, - 1, 1 ) );
+		return Math.acos( MathUtils.clamp( theta, - 1, 1 ) );
 
 	}
 
@@ -694,15 +695,15 @@ class Vector3 {
 
 	randomDirection() {
 
-		// https://mathworld.wolfram.com/SpherePointPicking.html
+		// Derived from https://mathworld.wolfram.com/SpherePointPicking.html
 
-		const theta = Math.random() * Math.PI * 2;
-		const u = Math.random() * 2 - 1;
-		const c = Math.sqrt( 1 - u * u );
+		const u = ( Math.random() - 0.5 ) * 2;
+		const t = Math.random() * Math.PI * 2;
+		const f = Math.sqrt( 1 - u ** 2 );
 
-		this.x = c * Math.cos( theta );
-		this.y = u;
-		this.z = c * Math.sin( theta );
+		this.x = f * Math.cos( t );
+		this.y = f * Math.sin( t );
+		this.z = u;
 
 		return this;
 
